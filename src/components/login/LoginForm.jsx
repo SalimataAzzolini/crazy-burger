@@ -18,7 +18,7 @@ const LoginForm = () => {
         return true; 
     }
 
-    const handleClick = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         if (!validateForm()) return;
 
@@ -27,16 +27,16 @@ const LoginForm = () => {
 
     }
     return (
-        <form >   
-                <h1> Bienvenue chez nous</h1>
+        <form onSubmit={handleSubmit}>   
+                <h1> Bienvenue chez nous ! </h1>
                 <h4> Connectez-vous</h4>
-                <input type="text" placeholder="Entrez votre prénom.." required={true}
+                <input type="text" placeholder="Entrez votre prénom..." required
                     value={name} onChange={handleChange}
                 />
                 {
-                    errorMessage !== '' && <p className="error-message-form" style={{color : 'red', fontSize : '10px' }}>{errorMessage}</p>
+                    errorMessage && <p className="error-message-form" style={{color : 'red', fontSize : '10px' }}>{errorMessage}</p>
                 }
-                <button onClick={handleClick}> Accéder à votre espace</button>
+                <button type="submit"> Accéder à votre espace</button>
             </form>
     );
 };
