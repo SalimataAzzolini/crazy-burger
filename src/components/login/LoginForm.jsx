@@ -1,7 +1,6 @@
 import { useState } from "react";
 
-
-const LoginPage = () => {
+const LoginForm = () => {
 
     const [name, setName] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -27,14 +26,10 @@ const LoginPage = () => {
         setName('');
 
     }
-
-
     return (
-        <div>
-            <h1> Bienvenue chez nous</h1>
-            <h4> Connectez-vous</h4>
-
-            <form >
+        <form >   
+                <h1> Bienvenue chez nous</h1>
+                <h4> Connectez-vous</h4>
                 <input type="text" placeholder="Entrez votre prénom.." required={true}
                     value={name} onChange={handleChange}
                 />
@@ -43,8 +38,7 @@ const LoginPage = () => {
                 }
                 <button onClick={handleClick}> Accéder à votre espace</button>
             </form>
-        </div>
     );
 };
 
-export default LoginPage;
+export default LoginForm;
