@@ -1,6 +1,10 @@
 import { useState } from "react";
+import {  useNavigate } from 'react-router-dom';
+
 
 const LoginForm = () => {
+
+    let navigate = useNavigate();
 
     const [name, setName] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -22,7 +26,7 @@ const LoginForm = () => {
         e.preventDefault();
         if (!validateForm()) return;
 
-        alert(`Bienvenue ${name}`);
+        navigate("/order-page", { replace: true, state: { name } });
         setName('');
 
     }
