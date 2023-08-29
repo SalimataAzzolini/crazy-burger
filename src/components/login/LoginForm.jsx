@@ -26,7 +26,7 @@ const LoginForm = () => {
         e.preventDefault();
         if (!validateForm()) return;
 
-        navigate("/order-page", { replace: true, state: { name } });
+        navigate("/order", { replace: true, state: { name } });
         setName('');
 
     }

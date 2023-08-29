@@ -10,13 +10,12 @@ const OrderPage = () => {
     }
 
     const { name } = state;
-    console.log(name);
 
     return (
         <div>
             <h3>Bonjour {name} </h3>
             <button
-            onClick={() => window.location.href = '/login'}
+                onClick={() => window.location.href = '/'}
             > Déconnexion </button>
         </div>
     );

@@ -8,7 +8,7 @@ const ErrorPage = () => {
         <div>
             <h4> Error Page </h4>
 
-            <button onClick={() => navigate('/login')}>  Retour à la page d accueil</button>
+            <button onClick={() => navigate('/')}>  Retour à la page d accueil</button>
         </div>
     );
 };
