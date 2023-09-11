@@ -5,15 +5,15 @@ const OrderPage = () => {
     const location = useLocation();
     const { state } = location;
 
-    if (!state || !state.name) {
+    if (!state || !state.username) {
         return <div>Erreur: Nom nom transmis</div>;
     }
 
-    const { name } = state;
+    const { username } = state;
 
     return (
         <div>
-            <h3>Bonjour {name} </h3>
+            <h3>Bonjour {username} </h3>
             <button
                 onClick={() => window.location.href = '/'}
             > Déconnexion </button>
