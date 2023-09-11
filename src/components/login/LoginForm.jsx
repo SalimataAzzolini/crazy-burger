@@ -1,17 +1,22 @@
 import { useState } from "react";
+import {  useNavigate } from 'react-router-dom';
+
 
 const LoginForm = () => {
 
-    const [name, setName] = useState('');
+    let navigate = useNavigate();
+
+
+    const [username, setUsername] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
 
     const handleChange = (e) => {
-        setName(e.target.value);
+        setUsername(e.target.value);
     }
 
     const validateForm = () => {
-        if (name === '') {
+        if (username === '') {
             setErrorMessage('Veuillez entrer votre nom');
             return false;
         }
@@ -22,16 +27,17 @@ const LoginForm = () => {
         e.preventDefault();
         if (!validateForm()) return;
 
-        alert(`Bienvenue ${name}`);
-        setName('');
-
+        navigate("/order", { replace: true, state: {username } });
+        setUsername('');
     }
+
+
     return (
         <form onSubmit={handleSubmit}>   
-                <h1> Bienvenue chez nous ! </h1>
+                <h1> Bienvenue au Ben Burger ! </h1>
                 <h4> Connectez-vous</h4>
                 <input type="text" placeholder="Entrez votre prénom..." required
-                    value={name} onChange={handleChange}
+                    value={username} onChange={handleChange}
                 />
                 {
                     errorMessage && <p className="error-message-form" style={{color : 'red', fontSize : '10px' }}>{errorMessage}</p>
