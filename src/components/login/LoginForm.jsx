@@ -42,7 +42,7 @@ const LoginForm = () => {
                 {
                     errorMessage && <p className="error-message-form" style={{color : 'red', fontSize : '10px' }}>{errorMessage}</p>
                 }
-                <button type="submit"> Accéder à votre espace</button>
+                <button type="submit"> Accéder à mon espace</button>
             </form>
     );
 };
