@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import LoginForm from "../../components/login/LoginForm";
 import Logo from "../../components/reusable-ui/Logo";
-import { theme } from "../../theme";
+// import { theme } from "../../theme";
 
 const LoginPage = () => {
 
@@ -28,7 +28,7 @@ const LoginPageStyled = styled.div`
             background-position: center;
             background-blend-mode: darken;
 
-            content: "avant";
+            content: "";
             position: absolute;
             top: 0;
             left: 0;
