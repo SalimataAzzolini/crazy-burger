@@ -10,6 +10,7 @@ const Logo = () => {
 };
 
 const LogoStylled = styled.div`
+background-color: green;
   
 `;
 

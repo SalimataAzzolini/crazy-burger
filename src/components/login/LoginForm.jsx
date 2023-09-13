@@ -40,7 +40,7 @@ const LoginFormStyled  = styled.form`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
+    background-color: red;
 `;
 
 
