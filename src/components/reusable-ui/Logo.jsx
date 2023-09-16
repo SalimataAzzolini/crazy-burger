@@ -17,8 +17,6 @@ const LogoStylled = styled.div`
     align-items: center;
     justify-content: center;
     /* transform: scale(2); */
-    margin-bottom: 20px;
-
 
     h1 {
         display: inline;
