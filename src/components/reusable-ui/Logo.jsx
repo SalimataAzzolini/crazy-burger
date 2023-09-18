@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { theme } from "../../theme";
 
 
 
@@ -27,7 +28,7 @@ const LogoStylled = styled.div`
         text-transform: uppercase;
         letter-spacing: 1.5px;
         font-family: 'Amatic SC', cursive;
-        color: #ffa01b;
+        color: ${theme.colors.primary};
 
     }
 
@@ -36,7 +37,7 @@ const LogoStylled = styled.div`
         object-position: center;
         height: 240px;
         width: 200px;
-        margin: 0 5px;
+        margin: 0 ${theme.gridUnit / 2};
     }
 
 `;

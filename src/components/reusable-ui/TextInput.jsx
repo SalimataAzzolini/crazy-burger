@@ -31,16 +31,22 @@ const TextInputStyled = styled.div`
    
         display: flex;
         align-items: center;
-        background-color: white;
-        border-radius: 5px;
+        background-color: ${theme.colors.white  };
+        border-radius: ${theme.borderRadius.round};
         padding: 18px 24px;
         margin : 18px 0;
         min-width: 350px;
 
         input{
             border: none;
-            font-size: 15px;
+            font-size: ${theme.fonts.P0};
             width: 100%;
+
+            ::placeholder{
+            background-color: ${theme.colors.background_white};
+            color: ${theme.colors.greySemiDark};
+            
+          }
         }
 
         .icon{
@@ -50,9 +56,6 @@ const TextInputStyled = styled.div`
             margin-right: 10px;
         }
 
-        ::placeholder{
-            background-color: white;
-            color: ${theme.colors.greySemiDark};
-        }
+  
     
 `;

@@ -58,10 +58,9 @@ const LoginFormStyled  = styled.form`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* background-color: green; */
     font-family: 'Amatic SC', cursive;
     padding: 0rem 2rem 2rem;
-    border-radius: 5px;
+    border-radius: ${theme.borderRadius.round};
     max-width: 500px;
     min-width: 400px;
     margin: 0 auto;
@@ -70,30 +69,30 @@ const LoginFormStyled  = styled.form`
     hr{
        
         border: 1.5px solid #F56A2C;
-        margin-bottom: 40px;
+        margin-bottom: ${theme.gridUnit * 5}px;
         width: 100%;
     }
 
     h1{
-        color : white;
-        font-size: 48px;
+        color : ${theme.colors.white};
+        font-size: ${theme.fonts.P5};
     }
 
     h2{
         color : ${theme.colors.greySemiDark};
         margin : 20px 10px 10px;
-        font-size: 36px;
+        font-size:  ${theme.fonts.P4};
     }
     h4{
-        color : white;
+        color : ${theme.colors.white};
         margin : 20px 10px 10px;
-        font-size: 34px;
+        font-size:  ${theme.fonts.P3};
     }
     .icon{
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 15px;
+        font-size:  ${theme.fonts.P0};
         margin-left : 10px;
     }
 `;

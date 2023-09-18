@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import LoginForm from "../../components/login/LoginForm";
-import Logo from "../../components/reusable-ui/Logo";
+import LoginForm from "../components/login/LoginForm";
+import Logo from "../components/reusable-ui/Logo";
 // import { theme } from "../../theme";
 
 const LoginPage = () => {
