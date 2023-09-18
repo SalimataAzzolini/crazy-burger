@@ -7,6 +7,7 @@ import {IoChevronForwardOutline} from 'react-icons/io5';
 import { theme } from "../../theme";
 import TextInput from "../reusable-ui/TextInput";
 import { BsPersonCircle } from "react-icons/bs";
+import PrimaryButton from "../reusable-ui/PrimaryButton";
 
 
 
@@ -36,16 +37,16 @@ const LoginForm = () => {
                 <TextInput
                     value={username}
                     onChange={handleChange}
-                    placeholder="Entre ton prénom"
+                    placeholder={"Entre ton prénom"}
                     required
                     Icon={<BsPersonCircle className="icon"/>}
                 />
 
-                <button className="button-with-icon">
-                    <span type="submit"> Accéder à mon espace</span>
-                    <IoChevronForwardOutline className="icon" />
-                </button>
-           
+                <PrimaryButton
+                    label={"Accéder à mon espace"}
+                    Icon={<IoChevronForwardOutline className="icon"/>}
+                />
+     
             </LoginFormStyled>
     );
 };
@@ -88,47 +89,6 @@ const LoginFormStyled  = styled.form`
         margin : 20px 10px 10px;
         font-size: 34px;
     }
-
-
-    .button-with-icon{
-        width: 100%;
-        border: 1px solid ${theme.colors.primary};
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        white-space: nowrap;
-        text-decoration: none;
-        line-height: 1;
-
-        padding: 18px 24px;
-        border-radius: 5px;
-        font-size: 15px;
-        font-weight: 800;
-        background-color: ${theme.colors.primary};
-        color : white;
-        cursor: pointer;
-    
-
-        &:hover {
-            background-color: ${theme.colors.primaryLight};
-            border-color: ${theme.colors.primaryLight};
-            color : white;
-            transition: all 200ms ease-out;
-        }
-
-        &:active{
-            color : ${theme.colors.primary};
-            background-color: white;
-            border-color: ${theme.colors.primary};
-        }
-
-        &:disabled{
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-    }
-
     .icon{
         display: flex;
         justify-content: center;
@@ -136,8 +96,6 @@ const LoginFormStyled  = styled.form`
         font-size: 15px;
         margin-left : 10px;
     }
-
-
 `;
 
 
