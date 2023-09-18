@@ -1,11 +1,11 @@
 import { useState } from "react";
 import {  useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import {BsPersonCircle} from 'react-icons/bs';
 import {IoChevronForwardOutline} from 'react-icons/io5';
 
 
 import { theme } from "../../theme";
+import InputLogin from "./InputLogin";
 
 
 
@@ -31,16 +31,14 @@ const LoginForm = () => {
                 <h1> Bienvenue chez nous ! </h1>
                 <hr />
                 <h4> Connecte-toi</h4>
-                <div className="input-with-icon">
-                    <BsPersonCircle className="icon" />
-                    <input 
-                        type="text" 
-                        placeholder="Entrez votre prénom" 
-                        required
-                        value={username} 
-                        onChange={handleChange}
-                    />
-                </div>
+
+                <InputLogin 
+                    value={username}
+                    onChange={handleChange}
+                    placeholder="Entrez votre prénom"
+                    required
+                />
+
                 <button className="button-with-icon">
                     <span type="submit"> Accéder à mon espace</span>
                     <IoChevronForwardOutline className="icon" />
@@ -89,33 +87,6 @@ const LoginFormStyled  = styled.form`
         font-size: 34px;
     }
 
-    .input-with-icon {
-        display: flex;
-        align-items: center;
-        background-color: white;
-        border-radius: 5px;
-        padding: 18px 24px;
-        margin : 18px 0;
-        min-width: 350px;
-
-        .icon{
-            color: ${theme.colors.greySemiDark};
-            width: 15px;
-            height: 15px;
-            margin-right: 10px;
-        }
-
-        input{
-            border: none;
-            font-size: 15px;
-            width: 100%;
-        }
-
-        ::placeholder{
-            background-color: white;
-            color: ${theme.colors.greySemiDark};
-        }
-    }
     
     .button-with-icon{
         width: 100%;
