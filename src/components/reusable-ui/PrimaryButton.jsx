@@ -42,9 +42,9 @@ const PrimaryButtonStyled = styled.button`
     
 
         &:hover {
-            background-color: ${theme.colors.primaryLight};
-            border-color: ${theme.colors.primaryLight};
-            color : white;
+            background-color: ${theme.colors.background_white};
+            border-color: ${theme.colors.primary};
+            color : ${theme.colors.primary};
             transition: all 200ms ease-out;
         }
 

@@ -16,7 +16,6 @@ const Logo = () => {
 const LogoStylled = styled.div`
     display: flex;
     align-items: center;
-    justify-content: center;
     /* transform: scale(2); */
 
     h1 {
