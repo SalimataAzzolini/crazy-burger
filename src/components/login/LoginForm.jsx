@@ -5,7 +5,8 @@ import {IoChevronForwardOutline} from 'react-icons/io5';
 
 
 import { theme } from "../../theme";
-import InputLogin from "./InputLogin";
+import TextInput from "../reusable-ui/TextInput";
+import { BsPersonCircle } from "react-icons/bs";
 
 
 
@@ -32,11 +33,12 @@ const LoginForm = () => {
                 <hr />
                 <h4> Connecte-toi</h4>
 
-                <InputLogin 
+                <TextInput
                     value={username}
                     onChange={handleChange}
-                    placeholder="Entrez votre prénom"
+                    placeholder="Entre ton prénom"
                     required
+                    Icon={<BsPersonCircle className="icon"/>}
                 />
 
                 <button className="button-with-icon">
@@ -87,7 +89,7 @@ const LoginFormStyled  = styled.form`
         font-size: 34px;
     }
 
-    
+
     .button-with-icon{
         width: 100%;
         border: 1px solid ${theme.colors.primary};

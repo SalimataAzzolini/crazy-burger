@@ -1,31 +1,33 @@
-import { BsPersonCircle } from 'react-icons/bs';
 import styled from 'styled-components';
 import { theme } from '../../theme';
 import PropTypes from 'prop-types'; 
 
-const InputLogin = ({ value, onChange, placeholder, required }) => {
+
+
+export default function TextInput ({ value, onChange, Icon, ...extraProps}) {
+
   return (
-    <InputLoginStyled className="input-with-icon">
-      <BsPersonCircle className="icon" />
+    <TextInputStyled className="input-with-icon">
+      {Icon && Icon}
       <input
         type="text"
-        placeholder={placeholder}
         value={value}
         onChange={onChange}
-        required={ required ? true : false }
+        {...extraProps}
       />
-    </InputLoginStyled>
+    </TextInputStyled>
   );
-};
+}
 
-InputLogin.propTypes = {
+TextInput.propTypes = {
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
+    Icon: PropTypes.node,
     placeholder: PropTypes.string,
     required: PropTypes.bool,
 };
 
-const InputLoginStyled = styled.div`
+const TextInputStyled = styled.div`
    
         display: flex;
         align-items: center;
@@ -35,17 +37,17 @@ const InputLoginStyled = styled.div`
         margin : 18px 0;
         min-width: 350px;
 
-        .icon{
-            color: ${theme.colors.greySemiDark};
-            width: 15px;
-            height: 15px;
-            margin-right: 10px;
-        }
-
         input{
             border: none;
             font-size: 15px;
             width: 100%;
+        }
+
+        .icon{
+            color: ${theme.colors.greySemiDark};
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
         }
 
         ::placeholder{
@@ -54,5 +56,3 @@ const InputLoginStyled = styled.div`
         }
     
 `;
-
-export default InputLogin;
