@@ -1,6 +1,8 @@
 import { useLocation } from 'react-router-dom';
+import styled from 'styled-components';
 
-const OrderPage = () => {
+
+export default function OrderPage () {
 
     const location = useLocation();
     const { state } = location;
@@ -12,13 +14,28 @@ const OrderPage = () => {
     const { username } = state;
 
     return (
-        <div>
-            <h3>Bonjour {username} </h3>
-            <button
-                onClick={() => window.location.href = '/'}
-            > Déconnexion </button>
-        </div>
+        <OrderPageStyled >
+            <div className="container"> 
+                <h3>Bonjour {username} </h3>
+                <button onClick={() => window.location.href = '/'} > Déconnexion </button>
+                OrderPageStyled 
+            </div>
+        </OrderPageStyled>
     );
-};
+}
 
-export default OrderPage;
+const OrderPageStyled = styled.div`
+    background : orange;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .container{
+        background: red;
+        height: 95vh;
+        width: 1400px;
+    }
+  
+`;
+
