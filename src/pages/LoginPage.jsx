@@ -2,13 +2,14 @@ import styled from "styled-components";
 
 import LoginForm from "../components/login/LoginForm";
 import Logo from "../components/reusable-ui/Logo";
-// import { theme } from "../../theme";
+import { theme } from "../theme";
+
 
 const LoginPage = () => {
 
     return (
         <LoginPageStyled>
-            <Logo />
+            <Logo className={"logo-login-page"} />
           <LoginForm />
         </LoginPageStyled>
     );
@@ -37,6 +38,18 @@ const LoginPageStyled = styled.div`
             bottom: 0;
             right: 0;
             z-index: -1;
+        }
+
+        .logo-login-page{
+            h1{
+                font-size: 110px;
+            }
+
+            img{
+                height: 240px;
+                width: 200px;
+                margin: 0 ${theme.gridUnit * 2}px;
+            }
         }
     
     `;
