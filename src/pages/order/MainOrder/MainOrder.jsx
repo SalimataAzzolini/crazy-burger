@@ -1,12 +1,13 @@
 import styled from 'styled-components';
-import { theme } from '../../theme';
+import { theme } from '../../../theme';
+import Menu from './Menu';
 
 export default function MainOrder() {
 
   return (
     <MainOrderStyled>
         <div className="basket"> Basket </div>
-        <div className="menu"> Menu </div>
+        <Menu />
     </MainOrderStyled>
   )
 }
@@ -25,9 +26,6 @@ const MainOrderStyled = styled.div`
 
     .basket{
       background: #efa1a1;
-    }
-    .menu{
-      background: #632657; 
     }
         
 `;

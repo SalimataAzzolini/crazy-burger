@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { BsPersonCircle } from "react-icons/bs";
-import { theme } from '../../theme';
+import { theme } from '../../../theme';
 
 
 

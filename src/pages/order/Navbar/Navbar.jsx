@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types'; 
 import NavbarRigthSide from './NavbarRigthSide';
 
-import Logo from '../../components/reusable-ui/Logo';
-import { theme } from '../../theme';
-import { refreshPage } from '../../utils/window';
+import Logo from '../../../components/reusable-ui/Logo';
+import { theme } from '../../../theme';
+import { refreshPage } from '../../../utils/window';
 
 export default function Navbar({ username}) {
   return (
