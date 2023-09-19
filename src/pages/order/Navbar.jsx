@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import NavbarRigthSide from './NavbarRigthSide';
 
 import Logo from '../../components/reusable-ui/Logo';
+import { theme } from '../../theme';
 
 export default function Navbar({ username}) {
   return (
@@ -21,11 +22,13 @@ Navbar.propTypes = {
 
 const NavBarStyled = styled.nav`
 
-    background: blue;
+    background: ${theme.colors.white};
     height: 10vh;
     display: flex;
     justify-content: space-between;
-    padding: 0 70px 0 20px;
+    padding: 0 20px;
+    border-top-left-radius: ${theme.borderRadius.extraRound};
+    border-top-right-radius: ${theme.borderRadius.extraRound};
 
     .left-side{
         background: yellow;
