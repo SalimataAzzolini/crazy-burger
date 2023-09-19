@@ -3,9 +3,9 @@ import { theme } from "../../theme";
 import PropTypes from 'prop-types'; 
 
 
-const Logo = ({className}) => {
+const Logo = ({className, onClick}) => {
     return (
-        <LogoStylled className={className}>
+        <LogoStylled className={className} onClick={onClick}>
             <h1> CRAZEE </h1>
             <img src="/images/logo-orange.png" alt="logo" />
             <h1> BURGER</h1>
@@ -15,6 +15,7 @@ const Logo = ({className}) => {
 
 Logo.propTypes = {
     className: PropTypes.string,
+    onClick: PropTypes.func,
 }
 
 const LogoStylled = styled.div`

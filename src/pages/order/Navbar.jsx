@@ -4,14 +4,14 @@ import NavbarRigthSide from './NavbarRigthSide';
 
 import Logo from '../../components/reusable-ui/Logo';
 import { theme } from '../../theme';
+import { refreshPage } from '../../utils/window';
 
 export default function Navbar({ username}) {
   return (
-    <NavBarStyled className="navbar">
 
-        <Logo className={"logo-order-page"}/>
+    <NavBarStyled className="navbar">
+        <Logo className={"logo-order-page"} onClick={refreshPage} />
         <NavbarRigthSide username={username} />
-       
     </NavBarStyled>
   )
 }
@@ -30,16 +30,10 @@ const NavBarStyled = styled.nav`
     border-top-left-radius: ${theme.borderRadius.extraRound};
     border-top-right-radius: ${theme.borderRadius.extraRound};
 
-    .left-side{
-        background: yellow;
-        /* height: 100%;
-        width: 20%;
-        display: flex;
-        justify-content: center;
-        align-items: center; */
-    }
 
     .logo-order-page{
+        cursor: pointer;
+
             h1{
                 font-size: 40px;
             }
