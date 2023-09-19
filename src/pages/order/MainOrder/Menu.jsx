@@ -19,6 +19,7 @@ export default function Menu() {
                     imageSource={product.imageSource}
                     price={product.price}
                 />
+                // <ProductCard  {...product} />
             ))}
             
         </MenuStyled>
