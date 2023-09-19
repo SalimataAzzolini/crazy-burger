@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import Navbar from './Navbar';
-import MainOrder from './MainOrder';
+import Navbar from './Navbar/Navbar';
+import MainOrder from './MainOrder/MainOrder';
 import { theme } from '../../theme';
 
 
