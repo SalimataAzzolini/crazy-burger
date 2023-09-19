@@ -1,17 +1,21 @@
 import styled from "styled-components";
 import { theme } from "../../theme";
+import PropTypes from 'prop-types'; 
 
 
-
-const Logo = () => {
+const Logo = ({className}) => {
     return (
-        <LogoStylled>
+        <LogoStylled className={className}>
             <h1> CRAZEE </h1>
             <img src="/images/logo-orange.png" alt="logo" />
             <h1> BURGER</h1>
         </LogoStylled>
     );
 };
+
+Logo.propTypes = {
+    className: PropTypes.string,
+}
 
 const LogoStylled = styled.div`
     display: flex;
@@ -32,11 +36,8 @@ const LogoStylled = styled.div`
     }
 
     img{
-        object-fit: contain;
-        object-position: center;
-        height: 240px;
-        width: 200px;
-        margin: 0 ${theme.gridUnit / 2};
+            object-fit: contain;
+            object-position: center;     
     }
 
 `;
