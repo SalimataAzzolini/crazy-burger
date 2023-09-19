@@ -75,24 +75,24 @@ const LoginFormStyled  = styled.form`
 
     h1{
         color : ${theme.colors.white};
-        font-size: ${theme.fonts.P5};
+        font-size: ${theme.fonts.size.P5};
     }
 
     h2{
         color : ${theme.colors.greySemiDark};
         margin : 20px 10px 10px;
-        font-size:  ${theme.fonts.P4};
+        font-size:  ${theme.fonts.size.P4};
     }
     h4{
         color : ${theme.colors.white};
         margin : 20px 10px 10px;
-        font-size:  ${theme.fonts.P3};
+        font-size:  ${theme.fonts.size.P3};
     }
     .icon{
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size:  ${theme.fonts.P0};
+        font-size:  ${theme.fonts.size.P0};
         margin-left : 10px;
     }
 `;
