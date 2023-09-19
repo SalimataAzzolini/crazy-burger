@@ -23,6 +23,7 @@ const MainOrderStyled = styled.div`
 
     display: grid;
     grid-template-columns:  1fr;
+    overflow-y: scroll;
 
     //this code will be use for the basket component
     /* .basket{
