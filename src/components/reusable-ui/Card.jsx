@@ -1,36 +1,36 @@
 import styled from "styled-components";
 import PropTypes from 'prop-types';
-import PrimaryButton from "../../../components/reusable-ui/PrimaryButton";
-import { theme } from "../../../theme";
+import PrimaryButton from "./PrimaryButton";
+import { theme } from "../../theme";
 
-ProductCard.propTypes = {
+Card.propTypes = {
     title: PropTypes.string.isRequired,
     imageSource: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
+    leftDescription: PropTypes.number.isRequired,
 };
 
 
-export default function ProductCard({title, imageSource, price}) {
+export default function Card({title, imageSource, leftDescription}) {
   return (
-    <ProductCardStyled>
+    <CardStyled>
         <div className="image">
         <img src={imageSource} alt={title} />
       </div>
       <div className="text-info">
             <div className="title">{title}</div>
             <div className="description">
-                <div className="left-description">{price}</div>
+            <div className="left-description">{leftDescription}</div>
                 <div className="right-description">
                     <PrimaryButton className="primary-button" label={"Ajouter"} />
                 </div>
             </div>
       </div>
-    </ProductCardStyled>
+    </CardStyled>
   )
 }
 
 
-const ProductCardStyled = styled.div`
+const CardStyled = styled.div`
    
     background: ${theme.colors.white};
     width: 200px;
@@ -39,6 +39,7 @@ const ProductCardStyled = styled.div`
     grid-template-rows: 65% 1fr;
     padding: 20px;
     padding-bottom: 10px;
+    /* box-sizing: border-box; */
     box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
     border-radius: ${theme.borderRadius.extraRound};
 
@@ -71,7 +72,7 @@ const ProductCardStyled = styled.div`
             white-space: nowrap;
             overflow: hidden;
             width: 100%;
-            text-overflow: ellipsis; // ... si le texte est trop long
+            text-overflow: ellipsis; 
             font-family: "Amatic SC", cursive;
         }
 
@@ -85,7 +86,7 @@ const ProductCardStyled = styled.div`
             align-items: center;
             font-weight: ${theme.fonts.weights.medium};
             white-space: nowrap;
-            overflow: hidden; // si le texte est trop long
+            overflow: hidden; 
             text-overflow: ellipsis;
             font-weight: ${theme.fonts.weights.medium};
             color: ${theme.colors.primary};

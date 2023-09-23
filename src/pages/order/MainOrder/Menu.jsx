@@ -1,8 +1,12 @@
+/* eslint-disable no-unused-vars */
 import styled from "styled-components";
 import { useState } from "react";
+
+import { formatPrice } from "../../../utils/maths";
 import {  fakeMenu2 } from "../../../fakeData/fakeMenu";
 import { theme } from "../../../theme";
-import ProductCard from "./ProductCard";
+import Card from "../../../components/reusable-ui/Card";
+
 
 
 export default function Menu() {
@@ -12,14 +16,14 @@ export default function Menu() {
 
     return (
         <MenuStyled className="menu"> 
-            {products.map((product) => (
-                <ProductCard  
-                    key={product.id}
-                    title={product.title}
-                    imageSource={product.imageSource}
-                    price={product.price}
+            {products.map(({id, title, imageSource, price}) => (
+                <Card  
+                    key={id}
+                    title={title}
+                    imageSource={imageSource}
+                    leftDescription={formatPrice(price)}
                 />
-                // <ProductCard  {...product} />
+                // <Card  {...product} />
             ))}
             
         </MenuStyled>
@@ -36,7 +40,5 @@ const MenuStyled = styled.div`
     grid-row-gap: 60px;
     padding: 50px 50px 150px;
     justify-items: center;
-
-
 
 `;
