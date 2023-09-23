@@ -1,6 +1,8 @@
-import styled from "styled-components"
+import styled from "styled-components";
+import PropTypes from "prop-types";
+
 import { theme } from "../../theme";
-import PropTypes from "prop-types"
+
 
 ToggleButton.propTypes = {
     isChecked: PropTypes.bool.isRequired,
