@@ -12,7 +12,7 @@ import ToastAdmin from './ToastAdmin';
 
 export default function NavbarRigthSide({username}) {
 
-    const [isModeAdmin, setIsModeAdmin] = useState(false);
+    const [isModeAdmin, setIsModeAdmin] = useState(true);
 
     const displayToastNotification = () => {
 
@@ -37,6 +37,7 @@ export default function NavbarRigthSide({username}) {
   return (
         <NavBarStyledRigthSide className="rigth-side">
             <ToggleButton
+                isModeAdmin={isModeAdmin}
                 labelIfChecked="DÉSACTIVER LE MODE ADMIN"
                 labelIfUnchecked="ACTIVER LE MODE ADMIN"
                 colorOfBgChecked="#b3ca07"

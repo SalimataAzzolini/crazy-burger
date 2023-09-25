@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { theme } from '../../../theme';
 import Menu from './Menu';
+import Admin from './Admin/Admin';
 
 export default function MainOrder() {
 
@@ -9,7 +10,7 @@ export default function MainOrder() {
         {/* <div className="basket"> Basket </div> */}
         <div className="menu-and-admin"> 
           <Menu />
-          <div className="admin">Admin</div>
+          <Admin />
         </div>
     </MainOrderStyled>
   )
@@ -30,7 +31,7 @@ const MainOrderStyled = styled.div`
     grid-template-columns:  1fr;
     overflow-y: scroll;
 
-    
+
     //this code will be use for the basket component
     /* .basket{
       background: #efa1a1;
@@ -44,13 +45,5 @@ const MainOrderStyled = styled.div`
       border-bottom-right-radius: ${theme.borderRadius.extraRound};
 
 
-    .admin{
-      background: red;
-      position: absolute;
-      height: 250px;
-      bottom: 0;
-      left: 0;
-      right: 0;
-    }
   } 
 `;
