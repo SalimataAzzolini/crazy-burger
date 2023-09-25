@@ -5,14 +5,15 @@ import PropTypes from 'prop-types';
 
 import ToggleButton from '../../../components/reusable-ui/ToggleButton';
 import Profile from './Profile';
-import { useState } from 'react';
+import { useContext} from 'react';
 import ToastAdmin from './ToastAdmin';
+import OrderContext from '../../../context/OrderContext';
 
 
 
 export default function NavbarRigthSide({username}) {
 
-    const [isModeAdmin, setIsModeAdmin] = useState(true);
+    const {isModeAdmin, setIsModeAdmin} = useContext(OrderContext);
 
     const displayToastNotification = () => {
 
