@@ -1,13 +1,12 @@
-import { toast, ToastContainer } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from 'react-toastify';
 import {FaUserSecret} from 'react-icons/fa';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import ToggleButton from '../../../components/reusable-ui/ToggleButton';
-import { theme } from '../../../theme';
 import Profile from './Profile';
 import { useState } from 'react';
+import ToastAdmin from './ToastAdmin';
 
 
 
@@ -44,7 +43,7 @@ export default function NavbarRigthSide({username}) {
                 onToggle={displayToastNotification}
             />
 
-            <ToastContainer className="toaster" bodyClassName="body-toast" />
+            <ToastAdmin />
             <Profile username={username}/>
 
         </NavBarStyledRigthSide>
@@ -63,24 +62,6 @@ const NavBarStyledRigthSide = styled.nav`
     align-items: center;
     padding-right: 50px;
   
-
-    .toaster {
-    max-width: 300px;
-  }
-
-  .Toastify__toast.Toastify__toast-theme--dark.Toastify__toast--info {
-    background: ${theme.colors.background_dark};
-  }
-
-  .body-toast {
-    .Toastify__toast-icon.Toastify--animate-icon.Toastify__zoom-enter {
-      margin-right: 20px;
-      margin-left: 5px;
-    }
-    div {
-      line-height: 1.3em;
-    }
-  }
-    
+ 
 `;
 
