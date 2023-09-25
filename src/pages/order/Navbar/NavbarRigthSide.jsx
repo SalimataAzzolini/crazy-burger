@@ -1,15 +1,52 @@
+import { toast } from 'react-toastify';
+import {FaUserSecret} from 'react-icons/fa';
 import styled from 'styled-components';
-import PropTypes from 'prop-types'; 
+import PropTypes from 'prop-types';
+
+import ToggleButton from '../../../components/reusable-ui/ToggleButton';
 import Profile from './Profile';
+import { useState } from 'react';
+import ToastAdmin from './ToastAdmin';
+
 
 
 export default function NavbarRigthSide({username}) {
+
+    const [isModeAdmin, setIsModeAdmin] = useState(false);
+
+    const displayToastNotification = () => {
+
+        if(!isModeAdmin){
+            toast.info("Mode admin activé", {
+                icon: <FaUserSecret />,
+                theme: "dark",
+                position: toast.POSITION.BOTTOM_RIGHT,
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+
+        setIsModeAdmin(!isModeAdmin);
+    }
+
+
   return (
-        <NavBarStyled className="rigth-side">
-            {/* <div className="admin-button"> Admin Button</div> */}
-            
+        <NavBarStyledRigthSide className="rigth-side">
+            <ToggleButton
+                labelIfChecked="DÉSACTIVER LE MODE ADMIN"
+                labelIfUnchecked="ACTIVER LE MODE ADMIN"
+                colorOfBgChecked="#b3ca07"
+                onToggle={displayToastNotification}
+            />
+
+            <ToastAdmin />
             <Profile username={username}/>
-        </NavBarStyled>
+
+        </NavBarStyledRigthSide>
   )
 }
 
@@ -18,20 +55,13 @@ NavbarRigthSide.propTypes = {
     username: PropTypes.string.isRequired,
 }
 
-const NavBarStyled = styled.nav`
+const NavBarStyledRigthSide = styled.nav`
 
     display: flex;
+    gap: 50px;
     align-items: center;
     padding-right: 50px;
   
-
-    /* .admin-button{
-        background: #495110;
-    } */
-
-    .profile{
-        background: #b3ca07;
-    }
-    
+ 
 `;
 
