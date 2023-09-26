@@ -7,17 +7,18 @@ Tab.propTypes = {
     Icon : PropTypes.element,
     onClickTab : PropTypes.func,
     className : PropTypes.string,
+    label : PropTypes.string,
 }
 
 
-export default function Tab({Icon, onClickTab, className}) {
+export default function Tab({Icon, onClickTab, className, label}) {
 
 
   return (
     <TabStyled onClick={onClickTab} className={className}>
-      <div className="icon">
-          {Icon}
-      </div>
+
+      <div className="icon"> {Icon} </div>
+      {label && <span className="label"> {label} </span>}
       
     </TabStyled>
   )
@@ -62,6 +63,10 @@ const TabStyled = styled.button`
 
     .icon{
       display: flex;
+    }
+
+    .label{
+      margin-left: 13px;
     }
 
 

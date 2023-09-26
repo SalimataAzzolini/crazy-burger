@@ -20,11 +20,8 @@ export default function Admin() {
 
 const AdminStyled = styled.div`
     
-    
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    
-  
 `;
