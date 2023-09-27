@@ -4,7 +4,9 @@ import { theme } from "../../../../theme";
 
 export default function AdminPannel() {
   return (
-    <AdminPannelStyled >AdminPannel</AdminPannelStyled>
+    <AdminPannelStyled >
+      Ajouter un produit 
+    </AdminPannelStyled>
   )
 }
 

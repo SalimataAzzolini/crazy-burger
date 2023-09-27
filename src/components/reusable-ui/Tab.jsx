@@ -67,7 +67,11 @@ const TabStyled = styled.button`
 
     .label{
       margin-left: 13px;
+
+    &:hover{
+      text-decoration: underline;
     }
 
+    }
 
 `;
