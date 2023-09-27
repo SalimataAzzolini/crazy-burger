@@ -3,21 +3,20 @@ import Tab from "../../../../components/reusable-ui/Tab";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import {AiOutlinePlus} from "react-icons/ai";
 import {MdModeEditOutline} from "react-icons/md";
-import PropTypes from 'prop-types';
 import { theme } from "../../../../theme";
-import { useState } from "react";
+import { useContext } from "react";
+import OrderContext from "../../../../context/OrderContext";
 
 
-AdminTabs.propTypes = {
-    isCollapsed : PropTypes.bool,
-    setIsCollapsed : PropTypes.func,
-}
 
 
-export default function AdminTabs({isCollapsed, setIsCollapsed}) {
+export default function AdminTabs() {
 
-  const [isAddSelected , setIsAddSelected] = useState (true);
-  const [isEditSelected , setIsEditSelected] = useState (false);
+    const {
+            isCollapsed, setIsCollapsed,
+            isAddSelected, setIsAddSelected,
+            isEditSelected, setIsEditSelected
+          } = useContext(OrderContext);
   
 
   const selectAddTab = () => {
