@@ -5,6 +5,9 @@ import { BsPersonCircle } from "react-icons/bs";
 import { theme } from '../../../theme';
 
 
+Profile.propTypes = {
+  username: PropTypes.string.isRequired,
+}
 
 export default function Profile({username}) {
   return (
@@ -29,9 +32,6 @@ export default function Profile({username}) {
 }
 
 
-Profile.propTypes = {
-    username: PropTypes.string.isRequired,
-}
 
 const ProfileStyled = styled.div`
   display: flex;

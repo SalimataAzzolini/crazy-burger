@@ -3,26 +3,36 @@ import styled from 'styled-components';
 import Navbar from './Navbar/Navbar';
 import MainOrder from './MainOrder/MainOrder';
 import { theme } from '../../theme';
+import { useState } from 'react';
+import OrderContext from '../../context/OrderContext';
 
 
 export default function OrderPage () {
 
+    const [isModeAdmin, setIsModeAdmin] = useState (false);
+
+    const orderContextValue = {
+        isModeAdmin,
+        setIsModeAdmin,
+    };
+
     const location = useLocation();
     const { state } = location;
-
     if (!state || !state.username) {
         return <div>Erreur: Nom nom transmis</div>;
     }
-
     const { username } = state;
 
+
     return (
-        <OrderPageStyled >
-            <div className="container">
-                <Navbar username={username} />
-                <MainOrder />
-            </div>
-        </OrderPageStyled>
+        <OrderContext.Provider value={orderContextValue}>
+            <OrderPageStyled >
+                <div className="container">
+                    <Navbar username={username} />
+                    <MainOrder />
+                </div>
+            </OrderPageStyled>
+        </OrderContext.Provider>
     );
 }
 

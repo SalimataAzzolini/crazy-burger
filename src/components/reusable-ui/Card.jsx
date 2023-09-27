@@ -6,7 +6,7 @@ import { theme } from "../../theme";
 Card.propTypes = {
     title: PropTypes.string.isRequired,
     imageSource: PropTypes.string.isRequired,
-    leftDescription: PropTypes.number.isRequired,
+    leftDescription: PropTypes.string.isRequired,
 };
 
 

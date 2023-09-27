@@ -5,8 +5,8 @@ import { theme } from "../../theme";
 
 
 ToggleButton.propTypes = {
-    isChecked: PropTypes.bool.isRequired,
-    onToggle: PropTypes.func.isRequired,
+    isChecked: PropTypes.bool,
+    onToggle: PropTypes.func,
     labelIfChecked: PropTypes.string,
     labelIfUnchecked: PropTypes.string,
     colorOfBgChecked: PropTypes.string,
@@ -17,10 +17,10 @@ export default function ToggleButton({
   onToggle,
   labelIfChecked = "Fermer",
   labelIfUnchecked = "Ouvrir",
-  colorOfBgChecked,
+
 }) {
   return (
-    <ToggleButtonStyled colorOfBgChecked={colorOfBgChecked}>
+    <ToggleButtonStyled >
       <input
         type="checkbox"
         className="toggle"
