@@ -1,11 +1,9 @@
 import styled from "styled-components";
 import Tab from "../../../../components/reusable-ui/Tab";
-import { FiChevronDown, FiChevronUp } from "react-icons/fi";
-import { AiOutlinePlus } from "react-icons/ai";
-import { MdModeEditOutline } from "react-icons/md";
 import { theme } from "../../../../theme";
 import { useContext } from "react";
 import OrderContext from "../../../../context/OrderContext";
+import getTabsConfig from "./tabsConfigs";
 
 export default function AdminTabs() {
   const {
@@ -17,40 +15,38 @@ export default function AdminTabs() {
     setIsEditSelected,
   } = useContext(OrderContext);
 
+  // const selectTab = (tab) => {
+  //   setIsCollapsed(false);
+  //   if (tab === "add") {
+  //     setIsAddSelected(true);
+  //     setIsEditSelected(false);
+  //   } else if (tab === "edit") {
+  //     setIsEditSelected(true);
+  //     setIsAddSelected(false);
+  //   }
+  // };
+
   const selectTab = (tab) => {
     setIsCollapsed(false);
-    if (tab === "add") {
-      setIsAddSelected(true);
-      setIsEditSelected(false);
-    } else if (tab === "edit") {
-      setIsEditSelected(true);
-      setIsAddSelected(false);
+
+    const tabStates = {
+      add: [setIsAddSelected, setIsEditSelected],
+      edit: [setIsEditSelected, setIsAddSelected],
+    };
+
+    if (tabStates[tab]) {
+      tabStates[tab][0](true);
+      tabStates[tab][1](false);
     }
   };
 
-  const tabsConfig = [
-    {
-      index: "chevronUpDown",
-      label: "",
-      Icon: isCollapsed ? <FiChevronUp /> : <FiChevronDown />,
-      onClickTab: () => setIsCollapsed(!isCollapsed),
-      className: isCollapsed ? "is-active" : "",
-    },
-    {
-      index: "add",
-      label: "Ajouter un produit",
-      Icon: <AiOutlinePlus />,
-      onClickTab: () => selectTab("add"),
-      className: isAddSelected ? "is-active" : "",
-    },
-    {
-      index: "edit",
-      label: "Modifier un produit",
-      Icon: <MdModeEditOutline />,
-      onClickTab: () => selectTab("edit"),
-      className: isEditSelected ? "is-active" : "",
-    },
-  ];
+  const tabsConfig = getTabsConfig(
+    isCollapsed,
+    setIsCollapsed,
+    isAddSelected,
+    isEditSelected,
+    selectTab
+  );
 
   return (
     <AdminTabsStyled>
