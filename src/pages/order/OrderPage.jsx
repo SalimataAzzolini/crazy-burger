@@ -5,14 +5,24 @@ import MainOrder from "./MainOrder/MainOrder";
 import { theme } from "../../theme";
 import { useState } from "react";
 import OrderContext from "../../context/OrderContext";
+import { fakeMenu } from "../../fakeData/fakeMenu";
 
 export default function OrderPage() {
+  //Déclaration des states du context OrderContext
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isAddSelected, setIsAddSelected] = useState(true);
   const [isEditSelected, setIsEditSelected] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
+  const [products, setProducts] = useState(fakeMenu.MEDIUM);
 
+  const handleAddProduct = (newProduct) => {
+    const menuCopy = [...products];
+    const menuUpdated = [newProduct, ...menuCopy];
+    setProducts(menuUpdated);
+  };
+
+  //Déclaration du context
   const orderContextValue = {
     isModeAdmin,
     setIsModeAdmin,
@@ -24,6 +34,9 @@ export default function OrderPage() {
     setIsEditSelected,
     currentTabSelected,
     setCurrentTabSelected,
+    products,
+    setProducts,
+    handleAddProduct,
   };
 
   const location = useLocation();

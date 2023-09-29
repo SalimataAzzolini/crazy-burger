@@ -1,17 +1,32 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import { useContext } from "react";
+import OrderContext from "../../context/OrderContext";
+import { TiDelete } from "react-icons/ti";
+
 import PrimaryButton from "./PrimaryButton";
 import { theme } from "../../theme";
 
 Card.propTypes = {
-  title: PropTypes.string.isRequired,
-  imageSource: PropTypes.string.isRequired,
-  leftDescription: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  imageSource: PropTypes.string,
+  leftDescription: PropTypes.string,
+  handleRemoveProduct: PropTypes.func,
 };
 
-export default function Card({ title, imageSource, leftDescription }) {
+export default function Card({
+  title,
+  imageSource,
+  leftDescription,
+  handleRemoveProduct,
+}) {
+  const { isModeAdmin } = useContext(OrderContext);
+
   return (
     <CardStyled>
+      {/* {isModeAdmin && (
+        <TiDelete className="delete-icon" onClick={handleRemoveProduct} />
+      )} */}
       <div className="image">
         <img src={imageSource} alt={title} />
       </div>
@@ -40,6 +55,13 @@ const CardStyled = styled.div`
   box-shadow: ${theme.shadows.medium};
   border-radius: ${theme.borderRadius.extraRound};
 
+  .delete-icon {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    color: red;
+    cursor: pointer;
+  }
   .image {
     width: 100%;
     height: auto;
