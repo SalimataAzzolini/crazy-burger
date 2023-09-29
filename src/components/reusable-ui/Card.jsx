@@ -24,9 +24,9 @@ export default function Card({
 
   return (
     <CardStyled>
-      {isModeAdmin && (
+      {/* {isModeAdmin && (
         <TiDelete className="delete-icon" onClick={handleRemoveProduct} />
-      )}
+      )} */}
       <div className="image">
         <img src={imageSource} alt={title} />
       </div>

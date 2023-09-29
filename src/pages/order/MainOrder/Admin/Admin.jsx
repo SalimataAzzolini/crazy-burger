@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import AdminPannel from "./AdminPannel";
+import AdminPannel from "./AdminPannel/AdminPannel";
 import AdminTabs from "./AdminTabs";
 import { useContext } from "react";
 import OrderContext from "../../../../context/OrderContext";

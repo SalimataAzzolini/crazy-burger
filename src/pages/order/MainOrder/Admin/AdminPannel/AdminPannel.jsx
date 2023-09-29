@@ -1,15 +1,17 @@
 import styled from "styled-components";
-import { theme } from "../../../../theme";
+import { theme } from "../../../../../theme";
 import { useContext } from "react";
-import OrderContext from "../../../../context/OrderContext";
+import OrderContext from "../../../../../context/OrderContext";
+import AddForm from "./AddForm";
+import EditForm from "./EditForm";
 
 export default function AdminPannel() {
   const { isAddSelected, isEditSelected } = useContext(OrderContext);
 
   return (
     <AdminPannelStyled>
-      {isAddSelected && <div>Ajouter un produit</div>}
-      {isEditSelected && <div> Modifier un produit </div>}
+      {isAddSelected && <AddForm />}
+      {isEditSelected && <EditForm />}
     </AdminPannelStyled>
   );
 }
