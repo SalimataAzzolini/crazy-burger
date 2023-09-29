@@ -8,6 +8,7 @@ import OrderContext from "../../context/OrderContext";
 import { fakeMenu } from "../../fakeData/fakeMenu";
 
 export default function OrderPage() {
+  //Déclaration des states du context OrderContext
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isAddSelected, setIsAddSelected] = useState(true);
@@ -16,9 +17,12 @@ export default function OrderPage() {
   const [products, setProducts] = useState(fakeMenu.MEDIUM);
 
   const handleAddProduct = (newProduct) => {
-    setProducts([newProduct, ...products]);
+    const menuCopy = [...products];
+    const menuUpdated = [newProduct, ...menuCopy];
+    setProducts(menuUpdated);
   };
 
+  //Déclaration du context
   const orderContextValue = {
     isModeAdmin,
     setIsModeAdmin,

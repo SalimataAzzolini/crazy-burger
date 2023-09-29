@@ -1,31 +1,87 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
+import { FiCheck } from "react-icons/fi";
+
 import OrderContext from "../../../../../context/OrderContext";
+
+const EMPTY_PRODUCT = {
+  id: "",
+  title: "",
+  imageSource: "",
+  price: 0,
+};
 
 export default function AddForm() {
   const { handleAddProduct } = useContext(OrderContext);
 
-  const newProcuct = {
-    id: new Date().getTime(),
-    title: "New Product",
-    imageSource: "https://picsum.photos/200",
-    price: 2.5,
+  const [newProcuct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const [isSubmited, setIsSubmited] = useState(false);
+
+  const handleNewProductChange = (e) => {
+    const { name, value } = e.target;
+    setNewProduct({ ...newProcuct, [name]: value });
+  };
+
+  const displaySucessMessage = () => {
+    setIsSubmited(true);
+    setTimeout(() => {
+      setIsSubmited(false);
+    }, 2000);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleAddProduct(newProcuct);
+    const newProductToAdd = {
+      ...newProcuct,
+      id: crypto.randomUUID(),
+    };
+
+    handleAddProduct(newProductToAdd);
+    setNewProduct(EMPTY_PRODUCT);
+    displaySucessMessage();
   };
 
   return (
     <AddFormStyled onSubmit={handleSubmit}>
-      <div className="image-preview"> img prev</div>
-      <div className="input-fields">
-        <input type="text" placeholder="Nom du produit" />{" "}
-        <input type="text" placeholder="Image URL" />{" "}
-        <input type="text" placeholder="Price" />{" "}
+      <div className="image-preview">
+        {newProcuct.imageSource ? (
+          <img src={newProcuct.imageSource} alt={newProcuct.title} />
+        ) : (
+          <div className=""> Aucune image </div>
+        )}
       </div>
-      <button className="submit-button"> btn </button>
+      <div className="input-fields">
+        <input
+          type="text"
+          placeholder="Nom du produit"
+          name="title"
+          value={newProcuct.title}
+          onChange={handleNewProductChange}
+        />
+        <input
+          type="text"
+          placeholder="Image URL"
+          name="imageSource"
+          value={newProcuct.imageSource}
+          onChange={handleNewProductChange}
+        />{" "}
+        <input
+          type="number"
+          placeholder="Prix"
+          name="price"
+          value={newProcuct.price}
+          onChange={handleNewProductChange}
+        />{" "}
+      </div>
+      <div className="submit">
+        <button className="submit-button"> btn </button>
+        {isSubmited && (
+          <div className="submit-message">
+            <FiCheck />
+            <span> Ajouté avec succès</span>
+          </div>
+        )}
+      </div>
     </AddFormStyled>
   );
 }
@@ -42,6 +98,16 @@ const AddFormStyled = styled.form`
   .image-preview {
     background: red;
     grid-area: 1 / 1 / 4 / 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
   }
 
   .input-fields {
@@ -52,10 +118,18 @@ const AddFormStyled = styled.form`
     grid-template-rows: repeat(3, 1fr);
   }
 
-  .submit-button {
+  .submit {
     background: green;
     grid-area: 4 / 2 / 5 / 3;
+    display: flex;
+    align-items: center;
 
-    width: 50%;
+    .submit-button {
+      width: 50%;
+    }
+
+    .submit-message {
+      border: solid 1px red;
+    }
   }
 `;
