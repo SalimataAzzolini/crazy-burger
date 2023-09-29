@@ -1,18 +1,19 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { formatPrice } from "../../../utils/maths";
 import { fakeMenu } from "../../../fakeData/fakeMenu";
 import { theme } from "../../../theme";
 import Card from "../../../components/reusable-ui/Card";
+import OrderContext from "../../../context/OrderContext";
 
 export default function Menu() {
-  const [products, setProducts] = useState(fakeMenu.MEDIUM);
+  const { products, setProducts } = useContext(OrderContext);
 
-  const handleRemoveProduct = (id) => {
-    setProducts(products.filter((product) => product.id !== id));
-  };
+  // const handleRemoveProduct = (id) => {
+  //   setProducts(products.filter((product) => product.id !== id));
+  // };
 
   return (
     <MenuStyled className="menu">
@@ -23,7 +24,7 @@ export default function Menu() {
           title={title}
           imageSource={imageSource}
           leftDescription={formatPrice(price)}
-          handleRemoveProduct={() => handleRemoveProduct(id)}
+          // handleRemoveProduct={() => handleRemoveProduct(id)}
         />
       ))}
     </MenuStyled>
