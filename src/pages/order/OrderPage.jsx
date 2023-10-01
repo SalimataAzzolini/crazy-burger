@@ -22,6 +22,16 @@ export default function OrderPage() {
     setProducts(menuUpdated);
   };
 
+  const handleDeleteProduct = (productId) => {
+    const menuCopy = [...products];
+    const menuUpdated = menuCopy.filter((product) => product.id !== productId);
+    setProducts(menuUpdated);
+  };
+
+  const resetMenu = () => {
+    setProducts(fakeMenu.SMALL);
+  };
+
   //Déclaration du context
   const orderContextValue = {
     isModeAdmin,
@@ -37,6 +47,8 @@ export default function OrderPage() {
     products,
     setProducts,
     handleAddProduct,
+    handleDeleteProduct,
+    resetMenu,
   };
 
   const location = useLocation();

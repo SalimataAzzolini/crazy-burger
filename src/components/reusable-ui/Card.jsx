@@ -1,10 +1,8 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { useContext } from "react";
-import OrderContext from "../../context/OrderContext";
 import { TiDelete } from "react-icons/ti";
 
-import PrimaryButton from "./PrimaryButton";
+import Button from "./Button";
 import { theme } from "../../theme";
 
 Card.propTypes = {
@@ -12,6 +10,7 @@ Card.propTypes = {
   imageSource: PropTypes.string,
   leftDescription: PropTypes.string,
   handleRemoveProduct: PropTypes.func,
+  isModeAdmin: PropTypes.bool,
 };
 
 export default function Card({
@@ -19,14 +18,15 @@ export default function Card({
   imageSource,
   leftDescription,
   handleRemoveProduct,
+  isModeAdmin,
 }) {
-  const { isModeAdmin } = useContext(OrderContext);
-
   return (
     <CardStyled>
-      {/* {isModeAdmin && (
-        <TiDelete className="delete-icon" onClick={handleRemoveProduct} />
-      )} */}
+      {isModeAdmin && (
+        <button className="delete-button" aria-label="delete-button">
+          <TiDelete className="icon" onClick={handleRemoveProduct} />
+        </button>
+      )}
       <div className="image">
         <img src={imageSource} alt={title} />
       </div>
@@ -35,7 +35,7 @@ export default function Card({
         <div className="description">
           <div className="left-description">{leftDescription}</div>
           <div className="right-description">
-            <PrimaryButton className="primary-button" label={"Ajouter"} />
+            <Button className="primary-button" label={"Ajouter"} />
           </div>
         </div>
       </div>
@@ -54,14 +54,35 @@ const CardStyled = styled.div`
   /* box-sizing: border-box; */
   box-shadow: ${theme.shadows.medium};
   border-radius: ${theme.borderRadius.extraRound};
+  position: relative;
 
-  .delete-icon {
+  .delete-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
     width: 30px;
     height: 30px;
-    flex-shrink: 0;
-    color: red;
     cursor: pointer;
+    color: ${theme.colors.primary};
+    z-index: 2;
+    padding: 0;
+    border: none;
+    background: none;
+
+    .icon {
+      width: 100%;
+      height: 100%;
+    }
+
+    :hover {
+      color: ${theme.colors.red};
+    }
+
+    :active {
+      color: ${theme.colors.primary};
+    }
   }
+
   .image {
     width: 100%;
     height: auto;

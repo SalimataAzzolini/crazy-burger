@@ -1,61 +1,101 @@
-import styled from 'styled-components';
-import { theme } from '../../theme';
-import PropTypes from 'prop-types'; 
+import styled, { css } from "styled-components";
+import PropTypes from "prop-types";
 
+import { theme } from "../../theme";
 
+TextInput.propTypes = {
+  value: PropTypes.string || PropTypes.number,
+  onChange: PropTypes.func.isRequired,
+  Icon: PropTypes.node,
+  className: PropTypes.string,
+  version: PropTypes.string,
+  placeholder: PropTypes.string,
+  required: PropTypes.bool,
+};
 
-export default function TextInput ({ value, onChange, Icon, ...extraProps}) {
-
+export default function TextInput({
+  value,
+  onChange,
+  Icon,
+  className,
+  version = "normal",
+  ...extraProps
+}) {
   return (
-    <TextInputStyled className="input-with-icon">
-      {Icon && Icon}
-      <input
-        type="text"
-        value={value}
-        onChange={onChange}
-        {...extraProps}
-      />
+    <TextInputStyled className={className} version={version}>
+      <div className="icon"> {Icon && Icon}</div>
+      <input type="text" value={value} onChange={onChange} {...extraProps} />
     </TextInputStyled>
   );
 }
 
-TextInput.propTypes = {
-    value: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-    Icon: PropTypes.node,
-    placeholder: PropTypes.string,
-    required: PropTypes.bool,
-};
-
 const TextInputStyled = styled.div`
-   
-        display: flex;
-        align-items: center;
-        background-color: ${theme.colors.white  };
-        border-radius: ${theme.borderRadius.round};
-        padding: 18px 24px;
-        margin : 18px 0;
-        min-width: 350px;
+  display: flex;
+  align-items: center;
 
-        input{
-            border: none;
-            font-size: ${theme.fonts.size.SM};
-            width: 100%;
+  border-radius: ${theme.borderRadius.round};
+  padding: 18px 24px;
+  min-width: 350px;
 
-            ::placeholder{
-            background-color: ${theme.colors.background_white};
-            color: ${theme.colors.greySemiDark};
-            
-          }
-        }
+  input {
+    border: none;
+    font-size: ${theme.fonts.size.SM};
+    width: 100%;
 
-        .icon{
-            color: ${theme.colors.greySemiDark};
+    ::placeholder {
+      background-color: ${theme.colors.background_white};
+      color: ${theme.colors.greySemiDark};
+    }
+  }
+
+  .icon {
+    font-size: ${theme.fonts.size.SM};
+    margin: 0 13px 0 8px;
+    display: flex; // to center icon vertically
+    /* color: ${theme.colors.greySemiDark};
             width: 20px;
             height: 20px;
-            margin-right: 10px;
-        }
+            margin-right: 10px; */
+  }
 
-  
-    
+  /* ${(props) => {
+    if (props.version === "normal") return extraStyleNormal;
+    if (props.version === "minimalist") return extraStyleMinimalist;
+  }} */
+
+  ${({ version }) => extraStyle[version]}
 `;
+
+const extraStyleNormal = css`
+  background-color: ${theme.colors.white};
+  padding: 18px 28px;
+  color: ${theme.colors.greySemiDark};
+
+  input {
+    color: ${theme.colors.dark};
+
+    &::placeholder {
+      background: ${theme.colors.white};
+    }
+  }
+`;
+
+const extraStyleMinimalist = css`
+  background-color: ${theme.colors.background_white};
+  padding: 8px 16px;
+  color: ${theme.colors.greyBlue};
+
+  input {
+    background: ${theme.colors.background_white}; ////+
+    color: ${theme.colors.dark};
+
+    &:focus {
+      outline: 0; //// add outline
+    }
+  }
+`;
+
+const extraStyle = {
+  normal: extraStyleNormal,
+  minimalist: extraStyleMinimalist,
+};
