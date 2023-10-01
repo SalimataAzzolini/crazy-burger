@@ -11,12 +11,17 @@ import OrderContext from "../../../context/OrderContext";
 const DEFAULT_IMAGE = "/images/coming-soon.png";
 
 export default function Menu() {
-  const { products, isModeAdmin, handleDeleteProduct } =
+  const { products, resetMenu, isModeAdmin, handleDeleteProduct } =
     useContext(OrderContext);
 
   return (
     <MenuStyled className="menu">
-      {products.length === 0 && <div className="empty">Aucun produit</div>}
+      {products.length === 0 && (
+        <div className="empty">
+          <span> Aucun produit</span>
+          <button onClick={resetMenu}> Générer de nouveaux produits </button>
+        </div>
+      )}
       {products.map(({ id, title, imageSource, price }) => (
         <Card
           key={id}

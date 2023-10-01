@@ -28,6 +28,10 @@ export default function OrderPage() {
     setProducts(menuUpdated);
   };
 
+  const resetMenu = () => {
+    setProducts(fakeMenu.SMALL);
+  };
+
   //Déclaration du context
   const orderContextValue = {
     isModeAdmin,
@@ -44,6 +48,7 @@ export default function OrderPage() {
     setProducts,
     handleAddProduct,
     handleDeleteProduct,
+    resetMenu,
   };
 
   const location = useLocation();
