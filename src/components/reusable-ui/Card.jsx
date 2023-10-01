@@ -2,7 +2,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { TiDelete } from "react-icons/ti";
 
-import Button from "./PrimaryButton";
+import Button from "./Button";
 import { theme } from "../../theme";
 
 Card.propTypes = {

@@ -8,7 +8,7 @@ import { MdOutlineEuro } from "react-icons/md";
 import OrderContext from "../../../../../context/OrderContext";
 import { theme } from "../../../../../theme";
 import TextInput from "../../../../../components/reusable-ui/TextInput";
-import PrimaryButton from "../../../../../components/reusable-ui/PrimaryButton";
+import PrimaryButton from "../../../../../components/reusable-ui/Button";
 
 const EMPTY_PRODUCT = {
   id: "",
@@ -87,8 +87,8 @@ export default function AddForm() {
           label={"Ajouter un nouveau produit au menu"}
           Icon={<FiCheck />}
           version={"success"}
+          className="submit-button"
         />
-        {/* <button className="submit-button">Ajouter </button> */}
         {isSubmited && (
           <div className="submit-message">
             <FiCheck />
@@ -145,17 +145,14 @@ const AddFormStyled = styled.form`
   }
 
   .submit {
-    background: green;
-    grid-area: 4 / 2 / 5 / 3;
+    grid-area: 4 / -2 / -1 / -1;
     display: flex;
     align-items: center;
+    position: relative;
+    top: 3px;
 
-    .submit-button {
-      width: 50%;
-    }
-
-    .submit-message {
-      border: solid 1px red;
-    }
+    /* .submit-button {
+      height: 0%;
+    } */
   }
 `;
