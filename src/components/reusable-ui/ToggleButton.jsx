@@ -3,24 +3,22 @@ import PropTypes from "prop-types";
 
 import { theme } from "../../theme";
 
-
 ToggleButton.propTypes = {
-    isChecked: PropTypes.bool,
-    onToggle: PropTypes.func,
-    labelIfChecked: PropTypes.string,
-    labelIfUnchecked: PropTypes.string,
-    colorOfBgChecked: PropTypes.string,
-}
+  isChecked: PropTypes.bool,
+  onToggle: PropTypes.func,
+  labelIfChecked: PropTypes.string,
+  labelIfUnchecked: PropTypes.string,
+  colorOfBgChecked: PropTypes.string,
+};
 
 export default function ToggleButton({
   isChecked,
   onToggle,
   labelIfChecked = "Fermer",
   labelIfUnchecked = "Ouvrir",
-
 }) {
   return (
-    <ToggleButtonStyled >
+    <ToggleButtonStyled>
       <input
         type="checkbox"
         className="toggle"
@@ -35,12 +33,10 @@ export default function ToggleButton({
         data-unchecked={labelIfUnchecked}
       ></label>
     </ToggleButtonStyled>
-  )
+  );
 }
 
 const ToggleButtonStyled = styled.div`
-  /* border: 1px solid red; */
-
   display: flex;
   margin-right: 10px;
   input[type="checkbox"] {
@@ -100,7 +96,7 @@ const ToggleButtonStyled = styled.div`
     }
 
     &.toggle:not(:checked) + label {
-        background-color: ${theme.colors.background_dark};
+      background-color: ${theme.colors.background_dark};
       /* background-color: ${(props) => props.colorOfBgChecked}; */
       /* text-align: right; */
     }
@@ -143,4 +139,4 @@ const ToggleButtonStyled = styled.div`
       background-color: ${theme.colors.primary};
     }
   }
-`
+`;

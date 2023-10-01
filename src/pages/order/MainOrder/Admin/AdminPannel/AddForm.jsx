@@ -74,7 +74,7 @@ export default function AddForm() {
         />{" "}
       </div>
       <div className="submit">
-        <button className="submit-button"> btn </button>
+        <button className="submit-button">Ajouter </button>
         {isSubmited && (
           <div className="submit-message">
             <FiCheck />
