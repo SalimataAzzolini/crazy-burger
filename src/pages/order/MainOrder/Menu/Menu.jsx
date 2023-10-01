@@ -2,11 +2,13 @@
 import styled from "styled-components";
 import { useContext, useState } from "react";
 
-import { formatPrice } from "../../../utils/maths";
-import { fakeMenu } from "../../../fakeData/fakeMenu";
-import { theme } from "../../../theme";
-import Card from "../../../components/reusable-ui/Card";
-import OrderContext from "../../../context/OrderContext";
+import { formatPrice } from "../../../../utils/maths";
+import { fakeMenu } from "../../../../fakeData/fakeMenu";
+import { theme } from "../../../../theme";
+import Card from "../../../../components/reusable-ui/Card";
+import OrderContext from "../../../../context/OrderContext";
+import EmptyMenuAdmin from "./EmptyMenuAdmin";
+import EmptyMenuClient from "./EmptyMenuClient";
 
 const DEFAULT_IMAGE = "/images/coming-soon.png";
 
@@ -14,14 +16,13 @@ export default function Menu() {
   const { products, resetMenu, isModeAdmin, handleDeleteProduct } =
     useContext(OrderContext);
 
+  //Gestion du menu vide
+  if (products.length === 0 && isModeAdmin)
+    return <EmptyMenuAdmin resetMenu={resetMenu} />;
+  if (products.length === 0 && !isModeAdmin) return <EmptyMenuClient />;
+
   return (
     <MenuStyled className="menu">
-      {products.length === 0 && (
-        <div className="empty">
-          <span> Aucun produit</span>
-          <button onClick={resetMenu}> Générer de nouveaux produits </button>
-        </div>
-      )}
       {products.map(({ id, title, imageSource, price }) => (
         <Card
           key={id}
