@@ -10,7 +10,7 @@ import { theme } from "../../../../../theme";
 import TextInput from "../../../../../components/reusable-ui/TextInput";
 import PrimaryButton from "../../../../../components/reusable-ui/Button";
 
-const EMPTY_PRODUCT = {
+export const EMPTY_PRODUCT = {
   id: "",
   title: "",
   imageSource: "",
@@ -18,14 +18,14 @@ const EMPTY_PRODUCT = {
 };
 
 export default function AddForm() {
-  const { handleAddProduct } = useContext(OrderContext);
+  const { handleAddProduct, newProduct, setNewProduct } =
+    useContext(OrderContext);
 
-  const [newProcuct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [isSubmited, setIsSubmited] = useState(false);
 
   const handleNewProductChange = (e) => {
     const { name, value } = e.target;
-    setNewProduct({ ...newProcuct, [name]: value });
+    setNewProduct({ ...newProduct, [name]: value });
   };
 
   const displaySucessMessage = () => {
@@ -38,7 +38,7 @@ export default function AddForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newProductToAdd = {
-      ...newProcuct,
+      ...newProduct,
       id: crypto.randomUUID(),
     };
 
@@ -50,8 +50,8 @@ export default function AddForm() {
   return (
     <AddFormStyled onSubmit={handleSubmit}>
       <div className="image-preview">
-        {newProcuct.imageSource ? (
-          <img src={newProcuct.imageSource} alt={newProcuct.title} />
+        {newProduct.imageSource ? (
+          <img src={newProduct.imageSource} alt={newProduct.title} />
         ) : (
           <div className="empty-image"> Aucune image </div>
         )}
@@ -60,7 +60,7 @@ export default function AddForm() {
         <TextInput
           placeholder="Nom du produit"
           name="title"
-          value={newProcuct.title}
+          value={newProduct.title}
           onChange={handleNewProductChange}
           Icon={<FaHamburger />}
           version={"minimalist"}
@@ -68,7 +68,7 @@ export default function AddForm() {
         <TextInput
           placeholder="Image URL"
           name="imageSource"
-          value={newProcuct.imageSource}
+          value={newProduct.imageSource}
           onChange={handleNewProductChange}
           Icon={<BsFillCameraFill />}
           version={"minimalist"}
@@ -76,7 +76,7 @@ export default function AddForm() {
         <TextInput
           placeholder="Prix"
           name="price"
-          value={newProcuct.price}
+          value={newProduct.price}
           onChange={handleNewProductChange}
           Icon={<MdOutlineEuro />}
           version={"minimalist"}
