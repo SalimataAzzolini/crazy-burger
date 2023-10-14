@@ -16,10 +16,11 @@ export default function Menu() {
   const { products, resetMenu, isModeAdmin, handleDeleteProduct } =
     useContext(OrderContext);
 
-  //Gestion du menu vide
-  if (products.length === 0 && isModeAdmin)
-    return <EmptyMenuAdmin resetMenu={resetMenu} />;
-  if (products.length === 0 && !isModeAdmin) return <EmptyMenuClient />;
+  // affichage gestion du menu vide
+  if (products.length === 0) {
+    if (!isModeAdmin) return <EmptyMenuClient />;
+    return <EmptyMenuAdmin onReset={resetMenu} />;
+  }
 
   return (
     <MenuStyled className="menu">

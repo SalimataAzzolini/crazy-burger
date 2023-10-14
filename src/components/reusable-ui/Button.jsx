@@ -6,7 +6,7 @@ import { theme } from "../../theme";
 Button.propTypes = {
   label: PropTypes.string.isRequired,
   Icon: PropTypes.node,
-  version: PropTypes.string,
+  version: PropTypes.oneOf(["normal", "success"]),
   className: PropTypes.string,
 };
 
