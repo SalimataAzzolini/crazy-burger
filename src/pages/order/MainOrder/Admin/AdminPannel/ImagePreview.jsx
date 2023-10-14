@@ -26,8 +26,8 @@ const ImagePreviewStyled = styled.div`
   align-items: center;
 
   img {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     object-fit: contain;
     object-position: center;
   }
