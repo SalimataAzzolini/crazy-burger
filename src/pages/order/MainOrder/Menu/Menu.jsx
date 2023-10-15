@@ -13,14 +13,26 @@ import EmptyMenuClient from "./EmptyMenuClient";
 const DEFAULT_IMAGE = "/images/coming-soon.png";
 
 export default function Menu() {
-  const { products, resetMenu, isModeAdmin, handleDeleteProduct } =
-    useContext(OrderContext);
+  const {
+    products,
+    resetMenu,
+    isModeAdmin,
+    handleDeleteProduct,
+    setProductSelected,
+  } = useContext(OrderContext);
 
   // affichage gestion du menu vide
   if (products.length === 0) {
     if (!isModeAdmin) return <EmptyMenuClient />;
     return <EmptyMenuAdmin onReset={resetMenu} />;
   }
+
+  const handleCardClick = (idProductClicked) => {
+    const productSelected = products.find(
+      (product) => product.id === idProductClicked
+    );
+    setProductSelected(productSelected);
+  };
 
   return (
     <MenuStyled className="menu">
@@ -32,6 +44,7 @@ export default function Menu() {
           leftDescription={formatPrice(price)}
           isModeAdmin={isModeAdmin}
           handleRemoveProduct={() => handleDeleteProduct(id)}
+          onClick={() => handleCardClick(id)}
         />
       ))}
     </MenuStyled>

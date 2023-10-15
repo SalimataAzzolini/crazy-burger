@@ -6,7 +6,7 @@ import { theme } from "../../theme";
 import { useState } from "react";
 import OrderContext from "../../context/OrderContext";
 import { fakeMenu } from "../../fakeData/fakeMenu";
-import { EMPTY_PRODUCT } from "./MainOrder/Admin/AdminPannel/AddForm";
+import { EMPTY_PRODUCT } from "../../enums/products";
 
 export default function OrderPage() {
   //Déclaration des states du context OrderContext
@@ -17,6 +17,7 @@ export default function OrderPage() {
   // const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [products, setProducts] = useState(fakeMenu.MEDIUM);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
 
   const handleAddProduct = (newProduct) => {
     const menuCopy = [...products];
@@ -54,6 +55,8 @@ export default function OrderPage() {
     resetMenu,
     newProduct,
     setNewProduct,
+    productSelected,
+    setProductSelected,
   };
 
   const location = useLocation();
