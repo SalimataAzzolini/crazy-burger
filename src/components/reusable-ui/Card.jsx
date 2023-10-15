@@ -11,6 +11,7 @@ Card.propTypes = {
   leftDescription: PropTypes.string,
   handleRemoveProduct: PropTypes.func,
   isModeAdmin: PropTypes.bool,
+  onClick: PropTypes.func,
 };
 
 export default function Card({
@@ -19,9 +20,10 @@ export default function Card({
   leftDescription,
   handleRemoveProduct,
   isModeAdmin,
+  onClick,
 }) {
   return (
-    <CardStyled>
+    <CardStyled onClick={onClick}>
       {isModeAdmin && (
         <button className="delete-button" aria-label="delete-button">
           <TiDelete className="icon" onClick={handleRemoveProduct} />

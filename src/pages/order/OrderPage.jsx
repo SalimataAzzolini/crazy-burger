@@ -6,17 +6,19 @@ import { theme } from "../../theme";
 import { useState } from "react";
 import OrderContext from "../../context/OrderContext";
 import { fakeMenu } from "../../fakeData/fakeMenu";
-import { EMPTY_PRODUCT } from "./MainOrder/Admin/AdminPannel/AddForm";
+import { EMPTY_PRODUCT } from "../../enums/products";
+import { deepClone } from "../../utils/array";
 
 export default function OrderPage() {
   //Déclaration des states du context OrderContext
-  const [isModeAdmin, setIsModeAdmin] = useState(false);
+  const [isModeAdmin, setIsModeAdmin] = useState(true);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [isAddSelected, setIsAddSelected] = useState(true);
-  const [isEditSelected, setIsEditSelected] = useState(false);
-  const [currentTabSelected, setCurrentTabSelected] = useState("add");
+  const [isAddSelected, setIsAddSelected] = useState(false);
+  const [isEditSelected, setIsEditSelected] = useState(true);
+  // const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [products, setProducts] = useState(fakeMenu.MEDIUM);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
 
   const handleAddProduct = (newProduct) => {
     const menuCopy = [...products];
@@ -30,6 +32,21 @@ export default function OrderPage() {
     setProducts(menuUpdated);
   };
 
+  const handleEditProduct = (productBeingEdited) => {
+    // 1. copie du state (deep clone)
+    const menuCopy = deepClone(products);
+
+    // 2. manip de la copie du state
+    const indexOfProductToEdit = products.findIndex(
+      (menuProduct) => menuProduct.id === productBeingEdited.id
+    );
+    menuCopy[indexOfProductToEdit] = productBeingEdited; //assignation d'une nouvelle valeur à l'index du produit à éditer par le produit édité
+
+    // 3. update du state
+    setProducts(menuCopy);
+  };
+
+  //Reset du menu à la version initiale
   const resetMenu = () => {
     setProducts(fakeMenu.SMALL);
   };
@@ -44,15 +61,16 @@ export default function OrderPage() {
     setIsAddSelected,
     isEditSelected,
     setIsEditSelected,
-    currentTabSelected,
-    setCurrentTabSelected,
     products,
     setProducts,
     handleAddProduct,
     handleDeleteProduct,
-    resetMenu, //reset du menu à la version initiale
+    handleEditProduct,
+    resetMenu,
     newProduct,
     setNewProduct,
+    productSelected,
+    setProductSelected,
   };
 
   const location = useLocation();
