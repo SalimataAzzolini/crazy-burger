@@ -7,6 +7,7 @@ import { useState } from "react";
 import OrderContext from "../../context/OrderContext";
 import { fakeMenu } from "../../fakeData/fakeMenu";
 import { EMPTY_PRODUCT } from "../../enums/products";
+import { deepClone } from "../../utils/array";
 
 export default function OrderPage() {
   //Déclaration des states du context OrderContext
@@ -31,6 +32,20 @@ export default function OrderPage() {
     setProducts(menuUpdated);
   };
 
+  const handleEditProduct = (productBeingEdited) => {
+    // 1. copie du state (deep clone)
+    const menuCopy = deepClone(products);
+
+    // 2. manip de la copie du state
+    const indexOfProductToEdit = products.findIndex(
+      (menuProduct) => menuProduct.id === productBeingEdited.id
+    );
+    menuCopy[indexOfProductToEdit] = productBeingEdited; //assignation d'une nouvelle valeur à l'index du produit à éditer par le produit édité
+
+    // 3. update du state
+    setProducts(menuCopy);
+  };
+
   //Reset du menu à la version initiale
   const resetMenu = () => {
     setProducts(fakeMenu.SMALL);
@@ -46,12 +61,11 @@ export default function OrderPage() {
     setIsAddSelected,
     isEditSelected,
     setIsEditSelected,
-    // currentTabSelected,
-    // setCurrentTabSelected,
     products,
     setProducts,
     handleAddProduct,
     handleDeleteProduct,
+    handleEditProduct,
     resetMenu,
     newProduct,
     setNewProduct,
