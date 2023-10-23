@@ -11,8 +11,8 @@ import { deepClone } from "../../utils/array";
 
 export default function OrderPage() {
   //Déclaration des states du context OrderContext
-  const [isModeAdmin, setIsModeAdmin] = useState(true);
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isModeAdmin, setIsModeAdmin] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
   const [isAddSelected, setIsAddSelected] = useState(false);
   const [isEditSelected, setIsEditSelected] = useState(true);
   // const [currentTabSelected, setCurrentTabSelected] = useState("add");
@@ -26,22 +26,28 @@ export default function OrderPage() {
     setProducts(menuUpdated);
   };
 
+  //Gestionnaire de state global
   const handleDeleteProduct = (productId) => {
     const menuCopy = [...products];
     const menuUpdated = menuCopy.filter((product) => product.id !== productId);
     setProducts(menuUpdated);
   };
 
+  // const handleEdit = (productBeingEdited) => {
+  //   const menuCopy = JSON.parse(JSON.stringify(menu))
+  //   const indexOfProducToEdit = products.indexOf(productSelected)
+  //   menuCopy[indexOfProducToEdit] = productBeingEdited
+  //   setMenu(menuCopy)
+  // }
+
   const handleEditProduct = (productBeingEdited) => {
     // 1. copie du state (deep clone)
     const menuCopy = deepClone(products);
-
     // 2. manip de la copie du state
     const indexOfProductToEdit = products.findIndex(
       (menuProduct) => menuProduct.id === productBeingEdited.id
     );
     menuCopy[indexOfProductToEdit] = productBeingEdited; //assignation d'une nouvelle valeur à l'index du produit à éditer par le produit édité
-
     // 3. update du state
     setProducts(menuCopy);
   };

@@ -9,6 +9,7 @@ import Card from "../../../../components/reusable-ui/Card";
 import OrderContext from "../../../../context/OrderContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
+import { checkIfProductIsClicked } from "./helper";
 
 const DEFAULT_IMAGE = "/images/coming-soon.png";
 
@@ -19,6 +20,7 @@ export default function Menu() {
     isModeAdmin,
     handleDeleteProduct,
     setProductSelected,
+    productSelected,
   } = useContext(OrderContext);
 
   // affichage gestion du menu vide
@@ -27,11 +29,12 @@ export default function Menu() {
     return <EmptyMenuAdmin onReset={resetMenu} />;
   }
 
+  //event handler card click
   const handleCardClick = (idProductClicked) => {
-    const productSelected = products.find(
+    const productClickedOn = products.find(
       (product) => product.id === idProductClicked
     );
-    setProductSelected(productSelected);
+    setProductSelected(productClickedOn);
   };
 
   return (
@@ -45,6 +48,8 @@ export default function Menu() {
           isModeAdmin={isModeAdmin}
           handleRemoveProduct={() => handleDeleteProduct(id)}
           onClick={() => handleCardClick(id)}
+          isHoverable={isModeAdmin}
+          isSelected={checkIfProductIsClicked(id, productSelected.id)}
         />
       ))}
     </MenuStyled>
