@@ -31,6 +31,8 @@ export default function Card({
       onClick={onClick}
       isHoverable={isHoverable}
       isSelected={isSelected}
+      // data-is-hoverable={isHoverable}
+      // data-is-selected={isSelected}
     >
       <div className="card">
         {isModeAdmin && (
@@ -74,7 +76,8 @@ const CardStyled = styled.div`
     position: relative;
 
     .delete-button {
-      pointer-events: none;
+      /* pointer-events: none; */
+      outline: none;
       border: 1px solid red;
       position: absolute;
       top: 15px;
@@ -87,14 +90,21 @@ const CardStyled = styled.div`
       padding: 0;
       border: none;
       background: none;
+      transform: none;
+      transition: none;
 
       .icon {
-        /* border: 1px solid blue; */
         height: 100%;
         width: 100%;
+
+        :hover {
+          color: ${theme.colors.red};
+          border: none;
+        }
       }
 
       :hover {
+        border: none;
         color: ${theme.colors.red};
       }
       :active {
@@ -177,7 +187,7 @@ const hoverableStyle = css`
   :hover {
     transform: scale(1.05);
     transition: ease-out 0.4s;
-    box-shadow: 0px 0px 20px 0px rgb(0 0 0 / 20%);
+    //box-shadow: 0px 0px 20px 0px rgb(0 0 0 / 20%);
     cursor: pointer;
     border: 2px solid ${theme.colors.primary};
   }
