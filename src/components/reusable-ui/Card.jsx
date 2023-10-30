@@ -9,35 +9,35 @@ Card.propTypes = {
   title: PropTypes.string,
   imageSource: PropTypes.string,
   leftDescription: PropTypes.string,
-  handleRemoveProduct: PropTypes.func,
   isModeAdmin: PropTypes.bool,
   onClick: PropTypes.func,
   isHoverable: PropTypes.bool,
   isSelected: PropTypes.bool,
+  onDeleteCard: PropTypes.func,
 };
 
 export default function Card({
   title,
   imageSource,
   leftDescription,
-  handleRemoveProduct,
   isModeAdmin,
   onClick,
   isHoverable,
   isSelected,
+  onDeleteCard,
 }) {
   return (
     <CardStyled
       onClick={onClick}
       isHoverable={isHoverable}
       isSelected={isSelected}
-      // data-is-hoverable={isHoverable}
+      // data-is-hoverable={isHoverable} gestion warning console
       // data-is-selected={isSelected}
     >
       <div className="card">
         {isModeAdmin && (
           <button className="delete-button" aria-label="delete-button">
-            <TiDelete className="icon" onClick={handleRemoveProduct} />
+            <TiDelete className="icon" onClick={onDeleteCard} />
           </button>
         )}
         <div className="image">
@@ -48,7 +48,11 @@ export default function Card({
           <div className="description">
             <div className="left-description">{leftDescription}</div>
             <div className="right-description">
-              <Button className="primary-button" label={"Ajouter"} />
+              <Button
+                className="primary-button"
+                label={"Ajouter"}
+                onClick={(event) => event.stopPropagation()}
+              />
             </div>
           </div>
         </div>
@@ -127,12 +131,13 @@ const CardStyled = styled.div`
     }
 
     .text-info {
+      //pointer-events: none;
       display: grid;
       grid-template-rows: 30% 70%;
       padding: 5px;
-      pointer-events: none;
 
       .title {
+        pointer-events: none;
         margin: auto 0;
         font-size: ${theme.fonts.size.P4};
         position: relative;
@@ -152,6 +157,7 @@ const CardStyled = styled.div`
         grid-template-columns: 1fr 1fr;
 
         .left-description {
+          pointer-events: none;
           display: flex;
           justify-content: flex-start;
           align-items: center;
@@ -187,9 +193,9 @@ const hoverableStyle = css`
   :hover {
     transform: scale(1.05);
     transition: ease-out 0.4s;
-    //box-shadow: 0px 0px 20px 0px rgb(0 0 0 / 20%);
     cursor: pointer;
-    border: 2px solid ${theme.colors.primary};
+    //box-shadow: 0px 0px 20px 0px rgb(0 0 0 / 20%);
+    /* border: 2px solid ${theme.colors.primary}; */
   }
 `;
 
