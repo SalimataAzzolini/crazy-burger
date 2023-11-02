@@ -21,6 +21,10 @@ export default function Menu() {
     handleDeleteProduct,
     setProductSelected,
     productSelected,
+    setIsCollapsed,
+    setIsAddSelected,
+    setIsEditSelected,
+    titleEditRef,
   } = useContext(OrderContext);
 
   // affichage gestion du menu vide
@@ -30,14 +34,21 @@ export default function Menu() {
   }
 
   //event handler card click
-  const handleCardClick = (idProductClicked) => {
+  const handleCardClick = async (idProductClicked) => {
     if (!isModeAdmin) return;
+
+    await setIsCollapsed(false);
+    await setIsAddSelected(false);
+    await setIsEditSelected(true);
+
     const productClickedOn = products.find(
       (product) => product.id === idProductClicked
     );
-    setProductSelected(productClickedOn);
+    await setProductSelected(productClickedOn);
+    titleEditRef.current.focus();
   };
 
+  //event handler card delete
   const handleCardDelete = (event, idProductToDelete) => {
     event.stopPropagation();
     handleDeleteProduct(idProductToDelete);

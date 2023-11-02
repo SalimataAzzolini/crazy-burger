@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Navbar from "./Navbar/Navbar";
 import MainOrder from "./MainOrder/MainOrder";
 import { theme } from "../../theme";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import OrderContext from "../../context/OrderContext";
 import { fakeMenu } from "../../fakeData/fakeMenu";
 import { EMPTY_PRODUCT } from "../../enums/products";
@@ -13,20 +13,22 @@ export default function OrderPage() {
   //Déclaration des states du context OrderContext
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(true);
-  const [isAddSelected, setIsAddSelected] = useState(false);
-  const [isEditSelected, setIsEditSelected] = useState(true);
+  const [isAddSelected, setIsAddSelected] = useState(true);
+  const [isEditSelected, setIsEditSelected] = useState(false);
   // const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [products, setProducts] = useState(fakeMenu.MEDIUM);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
+  const titleEditRef = useRef();
 
+  //Gestionnaire de state Ajout de produit
   const handleAddProduct = (newProduct) => {
     const menuCopy = [...products];
     const menuUpdated = [newProduct, ...menuCopy];
     setProducts(menuUpdated);
   };
 
-  //Gestionnaire de state global
+  //Gestionnaire de state Suppression de produit
   const handleDeleteProduct = (productId) => {
     const menuCopy = [...products];
     const menuUpdated = menuCopy.filter((product) => product.id !== productId);
@@ -77,6 +79,7 @@ export default function OrderPage() {
     setNewProduct,
     productSelected,
     setProductSelected,
+    titleEditRef,
   };
 
   const location = useLocation();

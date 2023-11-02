@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 // import HintMessage from "./HintMessage";
 import { useContext } from "react";
@@ -6,9 +7,15 @@ import TextInput from "../../../../../components/reusable-ui/TextInput";
 import ImagePreview from "./ImagePreview";
 import { getInputTextsConfig } from "./InputTextConfig";
 
-export default function EditForm() {
-  const { productSelected, setProductSelected, handleEditProduct } =
-    useContext(OrderContext);
+const EditForm = React.forwardRef(function EditForm(props, ref) {
+  const {
+    productSelected,
+    setProductSelected,
+    handleEditProduct,
+    titleEditRef,
+  } = useContext(OrderContext);
+  //input texts config
+  const inputTexts = getInputTextsConfig(productSelected);
 
   // comportements (gestionnaires d'événement:  "event handlers")
   const handleChange = (event) => {
@@ -19,8 +26,6 @@ export default function EditForm() {
     setProductSelected(productBeingUpdated); // update du formulaire
     handleEditProduct(productBeingUpdated, event); // State handler Update du menu
   };
-
-  const inputTexts = getInputTextsConfig(productSelected);
 
   return (
     <EditFormStyled>
@@ -35,13 +40,16 @@ export default function EditForm() {
             key={input.id}
             onChange={handleChange}
             version="minimalist"
+            ref={titleEditRef && input.name === "title" ? titleEditRef : null}
           />
         ))}
       </div>
-      <div className="submit"></div>
     </EditFormStyled>
   );
-}
+});
+
+export default EditForm;
+
 const EditFormStyled = styled.form`
   display: grid;
   grid-template-columns: 1fr 3fr;
