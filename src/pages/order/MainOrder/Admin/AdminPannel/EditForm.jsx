@@ -8,6 +8,7 @@ import ImagePreview from "./ImagePreview";
 import { getInputTextsConfig } from "./InputTextConfig";
 
 const EditForm = React.forwardRef(function EditForm(props, ref) {
+  //ici on utilise le forwardRef pour pouvoir utiliser la ref dans le composant parent
   const {
     productSelected,
     setProductSelected,

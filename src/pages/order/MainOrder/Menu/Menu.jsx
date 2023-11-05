@@ -10,6 +10,7 @@ import OrderContext from "../../../../context/OrderContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { checkIfProductIsClicked } from "./helper";
+import { EMPTY_PRODUCT } from "../../../../enums/products";
 
 const DEFAULT_IMAGE = "/images/coming-soon.png";
 
@@ -33,7 +34,7 @@ export default function Menu() {
     return <EmptyMenuAdmin onReset={resetMenu} />;
   }
 
-  //event handler card click
+  //event handler card clické (pour l'edit)
   const handleCardClick = async (idProductClicked) => {
     if (!isModeAdmin) return;
 
@@ -42,7 +43,7 @@ export default function Menu() {
     await setIsEditSelected(true);
 
     const productClickedOn = products.find(
-      (product) => product.id === idProductClicked
+      (product) => product.id === idProductClicked // on récupère le produit cliqué
     );
     await setProductSelected(productClickedOn);
     titleEditRef.current.focus();
@@ -52,6 +53,9 @@ export default function Menu() {
   const handleCardDelete = (event, idProductToDelete) => {
     event.stopPropagation();
     handleDeleteProduct(idProductToDelete);
+    idProductToDelete === productSelected.id &&
+      setProductSelected(EMPTY_PRODUCT); //gestion du produit vide pour l'affichage du hint message
+    titleEditRef.current.focus();
   };
 
   return (
