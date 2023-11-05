@@ -6,6 +6,7 @@ import OrderContext from "../../../../../context/OrderContext";
 import TextInput from "../../../../../components/reusable-ui/TextInput";
 import ImagePreview from "./ImagePreview";
 import { getInputTextsConfig } from "./InputTextConfig";
+import { theme } from "../../../../../theme";
 
 const EditForm = React.forwardRef(function EditForm(props, ref) {
   //ici on utilise le forwardRef pour pouvoir utiliser la ref dans le composant parent
@@ -45,6 +46,12 @@ const EditForm = React.forwardRef(function EditForm(props, ref) {
           />
         ))}
       </div>
+      <div className="submit">
+        <span className="sentence">
+          Cliquer sur un produit du menu pour le modifier{" "}
+          <span className="live-update">en temps réel</span>
+        </span>
+      </div>
     </EditFormStyled>
   );
 });
@@ -76,8 +83,12 @@ const EditFormStyled = styled.form`
     position: relative;
     top: 3px;
 
-    /* .submit-button {
-      height: 0%;
-    } */
+    .sentence {
+      color: ${theme.colors.primary};
+      font-size: ${theme.fonts.size.SM};
+      .live-update {
+        text-decoration: underline;
+      }
+    }
   }
 `;
