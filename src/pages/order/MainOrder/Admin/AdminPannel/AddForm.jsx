@@ -3,8 +3,8 @@ import { useContext, useState } from "react";
 import Button from "../../../../../components/reusable-ui/Button";
 import OrderContext from "../../../../../context/OrderContext";
 import { EMPTY_PRODUCT } from "../../../../../enums/products";
-import SubmitMessage from "./submitMessage";
 import Form from "./Form";
+import SubmitMessage from "./SubmitMessage";
 
 export default function AddForm() {
   const { handleAddProduct, newProduct, setNewProduct } =
