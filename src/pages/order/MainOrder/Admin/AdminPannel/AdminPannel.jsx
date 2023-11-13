@@ -4,14 +4,21 @@ import { useContext } from "react";
 import OrderContext from "../../../../../context/OrderContext";
 import AddForm from "./AddForm";
 import EditForm from "./EditForm";
+import { EMPTY_PRODUCT } from "../../../../../enums/products";
+import HintMessage from "./HintMessage";
 
 export default function AdminPannel() {
-  const { isAddSelected, isEditSelected } = useContext(OrderContext);
+  const { isAddSelected, isEditSelected, productSelected } =
+    useContext(OrderContext);
+
+  const hasAlreadyBeenClicked = productSelected !== EMPTY_PRODUCT;
 
   return (
     <AdminPannelStyled>
       {isAddSelected && <AddForm />}
-      {isEditSelected && <EditForm />}
+      {isEditSelected && (
+        <>{hasAlreadyBeenClicked ? <EditForm /> : <HintMessage />}</>
+      )}
     </AdminPannelStyled>
   );
 }

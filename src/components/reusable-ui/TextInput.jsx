@@ -2,6 +2,27 @@ import styled, { css } from "styled-components";
 import PropTypes from "prop-types";
 
 import { theme } from "../../theme";
+import React from "react";
+
+const TextInput = React.forwardRef(function TextInput(
+  { value, onChange, Icon, className, version = "normal", ...extraProps },
+  ref
+) {
+  return (
+    <TextInputStyled className={className} version={version}>
+      <div className="icon"> {Icon && Icon}</div>
+      <input
+        type="text"
+        ref={ref}
+        value={value}
+        onChange={onChange}
+        {...extraProps}
+      />
+    </TextInputStyled>
+  );
+});
+
+export default TextInput;
 
 TextInput.propTypes = {
   value: PropTypes.string || PropTypes.number,
@@ -12,22 +33,6 @@ TextInput.propTypes = {
   placeholder: PropTypes.string,
   required: PropTypes.bool,
 };
-
-export default function TextInput({
-  value,
-  onChange,
-  Icon,
-  className,
-  version = "normal",
-  ...extraProps
-}) {
-  return (
-    <TextInputStyled className={className} version={version}>
-      <div className="icon"> {Icon && Icon}</div>
-      <input type="text" value={value} onChange={onChange} {...extraProps} />
-    </TextInputStyled>
-  );
-}
 
 const TextInputStyled = styled.div`
   display: flex;

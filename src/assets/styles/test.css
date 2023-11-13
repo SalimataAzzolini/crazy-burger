@@ -1,0 +1,3 @@
+/* &[data-is-hoverable="true"] { //solution 2 pour le hover et eviter le warning
+    ${hoverableStyle}
+  } */

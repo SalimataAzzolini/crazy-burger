@@ -20,7 +20,10 @@ export default function Button({ label, Icon, version = "normal", className }) {
 }
 
 const ButtonStyled = styled.button`
-  ${({ version }) => extraStyle[version]};
+  ${({ version }) =>
+    extraStyle[
+      version
+    ]}; //ici on utilise la version de la props pour déterminer le style à appliquer
 `;
 
 const extraStylePrimary = css`

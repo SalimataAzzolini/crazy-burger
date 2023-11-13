@@ -9,6 +9,8 @@ import Card from "../../../../components/reusable-ui/Card";
 import OrderContext from "../../../../context/OrderContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
+import { checkIfProductIsClicked } from "./helper";
+import { EMPTY_PRODUCT } from "../../../../enums/products";
 
 const DEFAULT_IMAGE = "/images/coming-soon.png";
 
@@ -19,6 +21,11 @@ export default function Menu() {
     isModeAdmin,
     handleDeleteProduct,
     setProductSelected,
+    productSelected,
+    setIsCollapsed,
+    setIsAddSelected,
+    setIsEditSelected,
+    titleEditRef,
   } = useContext(OrderContext);
 
   // affichage gestion du menu vide
@@ -27,11 +34,28 @@ export default function Menu() {
     return <EmptyMenuAdmin onReset={resetMenu} />;
   }
 
-  const handleCardClick = (idProductClicked) => {
-    const productSelected = products.find(
-      (product) => product.id === idProductClicked
+  //event handler card clické (pour l'edit)
+  const handleCardClick = async (idProductClicked) => {
+    if (!isModeAdmin) return;
+
+    await setIsCollapsed(false);
+    await setIsAddSelected(false);
+    await setIsEditSelected(true);
+
+    const productClickedOn = products.find(
+      (product) => product.id === idProductClicked // on récupère le produit cliqué
     );
-    setProductSelected(productSelected);
+    await setProductSelected(productClickedOn);
+    titleEditRef.current.focus();
+  };
+
+  //event handler card delete
+  const handleCardDelete = (event, idProductToDelete) => {
+    event.stopPropagation();
+    handleDeleteProduct(idProductToDelete);
+    idProductToDelete === productSelected.id &&
+      setProductSelected(EMPTY_PRODUCT); //gestion du produit vide pour l'affichage du hint message
+    titleEditRef.current.focus();
   };
 
   return (
@@ -43,8 +67,10 @@ export default function Menu() {
           imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
           leftDescription={formatPrice(price)}
           isModeAdmin={isModeAdmin}
-          handleRemoveProduct={() => handleDeleteProduct(id)}
           onClick={() => handleCardClick(id)}
+          isHoverable={isModeAdmin}
+          isSelected={checkIfProductIsClicked(id, productSelected.id)}
+          onDeleteCard={(event) => handleCardDelete(event, id)}
         />
       ))}
     </MenuStyled>
