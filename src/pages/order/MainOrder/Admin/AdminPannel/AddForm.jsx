@@ -11,6 +11,7 @@ export default function AddForm() {
   const { handleAddProduct, newProduct, setNewProduct } =
     useContext(OrderContext);
 
+  //Custom hook to display success messages
   const { isSubmitted, displaySuccessMessage } = useSuccessMessage();
 
   const handleChange = (e) => {

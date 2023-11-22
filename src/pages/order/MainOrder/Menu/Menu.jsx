@@ -16,7 +16,7 @@ const DEFAULT_IMAGE = "/images/coming-soon.png";
 
 export default function Menu() {
   const {
-    products,
+    menu,
     resetMenu,
     isModeAdmin,
     handleDeleteProduct,
@@ -29,7 +29,7 @@ export default function Menu() {
   } = useContext(OrderContext);
 
   // affichage gestion du menu vide
-  if (products.length === 0) {
+  if (menu.length === 0) {
     if (!isModeAdmin) return <EmptyMenuClient />;
     return <EmptyMenuAdmin onReset={resetMenu} />;
   }
@@ -42,7 +42,7 @@ export default function Menu() {
     await setIsAddSelected(false);
     await setIsEditSelected(true);
 
-    const productClickedOn = products.find(
+    const productClickedOn = menu.find(
       (product) => product.id === idProductClicked // on récupère le produit cliqué
     );
     await setProductSelected(productClickedOn);
@@ -60,7 +60,7 @@ export default function Menu() {
 
   return (
     <MenuStyled className="menu">
-      {products.map(({ id, title, imageSource, price }) => (
+      {menu.map(({ id, title, imageSource, price }) => (
         <Card
           key={id}
           title={title}
