@@ -32,4 +32,7 @@ export default createContext({
   setProductSelected: () => {},
 
   titleEditRef: {},
+
+  basket: [],
+  handleDeleteBasketProduct: () => {},
 });
