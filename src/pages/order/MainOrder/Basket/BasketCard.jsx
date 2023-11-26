@@ -48,7 +48,6 @@ export default function BasketCard({
 
 const BasketCardStyled = styled.div`
   cursor: ${({ isModeAdmin }) => (isModeAdmin ? "pointer" : "auto")};
-  /* border: 1px solid red; */
   box-sizing: border-box;
   height: 86px;
   padding: 8px 16px;
@@ -64,7 +63,7 @@ const BasketCardStyled = styled.div`
   .image {
     box-sizing: border-box;
     height: 70px;
-    /* border: 1px solid red; */
+
     img {
       padding: 5px;
       box-sizing: border-box;
