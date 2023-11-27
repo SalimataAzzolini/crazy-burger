@@ -50,9 +50,9 @@ const BasketProductsStyled = styled.div`
     height: 90px;
     box-sizing: border-box;
 
-    :last-child {
+    /* :last-child {
       margin-bottom: 20px;
-    }
+    } */
   }
 `;
 
