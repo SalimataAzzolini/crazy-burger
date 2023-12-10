@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import PropTypes from "prop-types";
 import { TiDelete } from "react-icons/ti";
 
-import Button from "./Button";
+// import Button from "./Button";
 import { theme } from "../../theme";
 
 Card.propTypes = {
@@ -14,6 +14,7 @@ Card.propTypes = {
   isHoverable: PropTypes.bool,
   isSelected: PropTypes.bool,
   onDeleteCard: PropTypes.func,
+  onAdd: PropTypes.func,
 };
 
 export default function Card({
@@ -25,6 +26,7 @@ export default function Card({
   isHoverable,
   isSelected,
   onDeleteCard,
+  onAdd,
 }) {
   return (
     <CardStyled
@@ -48,11 +50,14 @@ export default function Card({
           <div className="description">
             <div className="left-description">{leftDescription}</div>
             <div className="right-description">
-              <Button
+              {/* <Button
                 className="primary-button"
                 label={"Ajouter"}
-                onClick={(event) => event.stopPropagation()}
-              />
+                onClick={onAdd}
+              /> */}
+              <button className="btn-add-product" onClick={onAdd}>
+                Ajouter
+              </button>
             </div>
           </div>
         </div>
@@ -179,6 +184,25 @@ const CardStyled = styled.div`
             font-size: ${theme.fonts.size.XS};
             cursor: pointer;
             padding: 12px;
+          }
+          .btn-add-product {
+            font-size: ${theme.fonts.size.XS};
+            cursor: pointer;
+            padding: 12px;
+            border: 1px solid ${theme.colors.primary};
+            border-radius: ${theme.borderRadius.round};
+            background: ${theme.colors.primary};
+            color: ${theme.colors.white};
+            transition: all 200ms ease-out;
+            :hover {
+              background: ${theme.colors.white};
+              color: ${theme.colors.primary};
+              transition: all 200ms ease-out;
+            }
+            :active {
+              background: ${theme.colors.primary};
+              color: ${theme.colors.white};
+            }
           }
         }
       }

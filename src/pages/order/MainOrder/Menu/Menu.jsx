@@ -11,6 +11,8 @@ import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { checkIfProductIsClicked } from "./helper";
 import { EMPTY_PRODUCT } from "../../../../enums/products";
+import { useBasket } from "../../../../hooks/useBasket";
+import { find } from "../../../../utils/array";
 
 const DEFAULT_IMAGE = "/images/coming-soon.png";
 
@@ -26,6 +28,7 @@ export default function Menu() {
     setIsAddSelected,
     setIsEditSelected,
     titleEditRef,
+    handleAddToBasket,
   } = useContext(OrderContext);
 
   // affichage gestion du menu vide
@@ -58,21 +61,35 @@ export default function Menu() {
     titleEditRef.current.focus();
   };
 
+  //event handler add button
+  const handleAddButton = (event, idProductToAdd) => {
+    event.stopPropagation();
+    //const productToAdd = menu.find((menuProduct) => menuProduct.id === idProductToAdd)
+    const productToAdd = find(idProductToAdd, menu);
+    console.log("productToAdd", productToAdd);
+    handleAddToBasket(productToAdd);
+  };
+
   return (
     <MenuStyled className="menu">
-      {menu.map(({ id, title, imageSource, price }) => (
-        <Card
-          key={id}
-          title={title}
-          imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
-          leftDescription={formatPrice(price)}
-          isModeAdmin={isModeAdmin}
-          onClick={() => handleCardClick(id)}
-          isHoverable={isModeAdmin}
-          isSelected={checkIfProductIsClicked(id, productSelected.id)}
-          onDeleteCard={(event) => handleCardDelete(event, id)}
-        />
-      ))}
+      {menu.map(
+        (
+          { id, title, imageSource, price } //on map sur le menu avec les props de chaque produit
+        ) => (
+          <Card
+            key={id}
+            title={title}
+            imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
+            leftDescription={formatPrice(price)}
+            isModeAdmin={isModeAdmin}
+            onClick={() => handleCardClick(id)}
+            isHoverable={isModeAdmin}
+            isSelected={checkIfProductIsClicked(id, productSelected.id)}
+            onDeleteCard={(event) => handleCardDelete(event, id)}
+            onAdd={(event) => handleAddButton(event, id)} //au moment du click sur le bouton add du menu vers le panier, on récupère l'id du produit cliqué
+          />
+        )
+      )}
     </MenuStyled>
   );
 }

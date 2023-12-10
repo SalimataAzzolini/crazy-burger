@@ -33,7 +33,7 @@ export default function OrderPage() {
   } = useMenu();
 
   //Fonction custom hook useBasket
-  const { basket, handleDeleteBasketProduct } = useBasket();
+  const { basket, handleAddToBasket, handleDeleteBasketProduct } = useBasket();
 
   //Déclaration du context
   const orderContextValue = {
@@ -57,6 +57,7 @@ export default function OrderPage() {
     setProductSelected,
     titleEditRef,
     basket,
+    handleAddToBasket,
     handleDeleteBasketProduct,
   };
 
