@@ -55,7 +55,7 @@ export default function Card({
                 label={"Ajouter"}
                 onClick={onAdd}
               /> */}
-              <button className="btn-add-product" onClick={onAdd}>
+              <button className="primary-button" onClick={onAdd}>
                 Ajouter
               </button>
             </div>
@@ -180,12 +180,12 @@ const CardStyled = styled.div`
           align-items: center;
           font-size: ${theme.fonts.size.P1};
 
-          .primary-button {
+          /* .primary-button {
             font-size: ${theme.fonts.size.XS};
             cursor: pointer;
             padding: 12px;
-          }
-          .btn-add-product {
+          } */
+          .primary-button {
             font-size: ${theme.fonts.size.XS};
             cursor: pointer;
             padding: 12px;
@@ -208,8 +208,12 @@ const CardStyled = styled.div`
       }
     }
 
-    ${({ isHoverable, isSelected }) =>
-      isHoverable && isSelected && selectedStyle}
+    ${(
+      { isHoverable, isSelected } //on regarde si la carte est hoverable et si elle est sélectionnée
+    ) =>
+      isHoverable &&
+      isSelected &&
+      selectedStyle}//si oui, on applique le style selectedStyle
   }
 `;
 
@@ -218,13 +222,22 @@ const hoverableStyle = css`
     transform: scale(1.05);
     transition: ease-out 0.4s;
     cursor: pointer;
-    //box-shadow: 0px 0px 20px 0px rgb(0 0 0 / 20%);
-    /* border: 2px solid ${theme.colors.primary}; */
+    box-shadow: 0px 0px 20px 0px rgb(0 0 0 / 20%);
+    border: 2px solid ${theme.colors.primary};
+
+    //on évite que les enfants soient ait le transform
+    > * {
+      transform: none;
+      transition: ease-out 0.4s;
+      border: none;
+      box-shadow: none;
+    }
   }
 `;
 
 const selectedStyle = css`
   background: ${theme.colors.primary};
+
   .primary-button {
     color: ${theme.colors.primary};
     background-color: ${theme.colors.white};
