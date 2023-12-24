@@ -14,14 +14,14 @@ export default function Basket() {
 
   const isBasketEmpty = basket.length === 0;
 
-  // const sumToPay = basket.reduce((total, basketProduct) => {
-  //   total += basketProduct.price * basketProduct.quantity
-  //   return total
-  // }, 0)
+  const sumToPay = basket.reduce((total, basketProduct) => {
+    total += basketProduct.price * basketProduct.quantity;
+    return total;
+  }, 0); // 0 is the initial value of total
 
   return (
     <BasketStyled>
-      <Total amountToPay={formatPrice(0)} />
+      <Total amountToPay={formatPrice(sumToPay)} />
       {isBasketEmpty ? (
         <EmptyBasket />
       ) : (

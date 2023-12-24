@@ -4,7 +4,7 @@ import { fakeBasket } from "../fakeData/fakeBasket";
 import { deepClone, filter, findIndex } from "../utils/array";
 
 export const useBasket = () => {
-  const [basket, setBasket] = useState(fakeBasket.SMALL);
+  const [basket, setBasket] = useState(fakeBasket.EMPTY);
 
   //Créer un nouveau produit dans le basket
   const createNewProductInBasket = (productToAdd, basketCopy, setBasket) => {
@@ -23,10 +23,6 @@ export const useBasket = () => {
       basketCopy
     );
 
-    console.log(
-      "indexOfBasketProductToIncrement",
-      indexOfBasketProductToIncrement
-    );
     basketCopy[indexOfBasketProductToIncrement].quantity += 1;
     setBasket(basketCopy);
   };
@@ -49,7 +45,7 @@ export const useBasket = () => {
     incrementProductAlreadyInBasket(productToAdd, basketCopy);
   };
 
-  //*****Supprimer un produit du basket
+  //Supprimer un produit du basket
   const handleDeleteBasketProduct = (idBasketProduct) => {
     //1. copy du state (optional because filter returns a new array )
     const basketCopy = deepClone(basket);
