@@ -29,6 +29,7 @@ export default function Menu() {
     setIsEditSelected,
     titleEditRef,
     handleAddToBasket,
+    handleDeleteBasketProduct,
   } = useContext(OrderContext);
 
   // affichage gestion du menu vide
@@ -56,6 +57,7 @@ export default function Menu() {
   const handleCardDelete = (event, idProductToDelete) => {
     event.stopPropagation();
     handleDeleteProduct(idProductToDelete);
+    handleDeleteBasketProduct(idProductToDelete);
     idProductToDelete === productSelected.id &&
       setProductSelected(EMPTY_PRODUCT); //gestion du produit vide pour l'affichage du hint message
     titleEditRef.current.focus();
