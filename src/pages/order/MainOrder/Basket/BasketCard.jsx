@@ -135,9 +135,9 @@ const BasketCardStyled = styled.div`
   }
 
   /* hover de la card */
-  :hover {
+  &:hover {
     .delete-button {
-      /* border: 1px solid red; */
+      border: 1px solid red; /* pour le debug */
       border: none;
       box-sizing: border-box;
       position: absolute;
