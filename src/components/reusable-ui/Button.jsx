@@ -8,11 +8,18 @@ Button.propTypes = {
   Icon: PropTypes.node,
   version: PropTypes.oneOf(["normal", "success"]),
   className: PropTypes.string,
+  onCLick: PropTypes.func,
 };
 
-export default function Button({ label, Icon, version = "normal", className }) {
+export default function Button({
+  label,
+  Icon,
+  version = "normal",
+  className,
+  onCLick,
+}) {
   return (
-    <ButtonStyled className={className} version={version}>
+    <ButtonStyled className={className} version={version} onClick={onCLick}>
       <span type="submit"> {label}</span>
       <div className="icon"> {Icon && Icon}</div>
     </ButtonStyled>

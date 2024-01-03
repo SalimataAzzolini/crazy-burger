@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import PropTypes from "prop-types";
 import { TiDelete } from "react-icons/ti";
 
-import Button from "./Button";
+// import Button from "./Button";
 import { theme } from "../../theme";
 
 Card.propTypes = {
@@ -14,6 +14,7 @@ Card.propTypes = {
   isHoverable: PropTypes.bool,
   isSelected: PropTypes.bool,
   onDeleteCard: PropTypes.func,
+  onAdd: PropTypes.func,
 };
 
 export default function Card({
@@ -25,6 +26,7 @@ export default function Card({
   isHoverable,
   isSelected,
   onDeleteCard,
+  onAdd,
 }) {
   return (
     <CardStyled
@@ -48,11 +50,14 @@ export default function Card({
           <div className="description">
             <div className="left-description">{leftDescription}</div>
             <div className="right-description">
-              <Button
+              {/* <Button
                 className="primary-button"
                 label={"Ajouter"}
-                onClick={(event) => event.stopPropagation()}
-              />
+                onClick={onAdd}
+              /> */}
+              <button className="primary-button" onClick={onAdd}>
+                Ajouter
+              </button>
             </div>
           </div>
         </div>
@@ -175,17 +180,40 @@ const CardStyled = styled.div`
           align-items: center;
           font-size: ${theme.fonts.size.P1};
 
+          /* .primary-button {
+            font-size: ${theme.fonts.size.XS};
+            cursor: pointer;
+            padding: 12px;
+          } */
           .primary-button {
             font-size: ${theme.fonts.size.XS};
             cursor: pointer;
             padding: 12px;
+            border: 1px solid ${theme.colors.primary};
+            border-radius: ${theme.borderRadius.round};
+            background: ${theme.colors.primary};
+            color: ${theme.colors.white};
+            transition: all 200ms ease-out;
+            :hover {
+              background: ${theme.colors.white};
+              color: ${theme.colors.primary};
+              transition: all 200ms ease-out;
+            }
+            :active {
+              background: ${theme.colors.primary};
+              color: ${theme.colors.white};
+            }
           }
         }
       }
     }
 
-    ${({ isHoverable, isSelected }) =>
-      isHoverable && isSelected && selectedStyle}
+    ${(
+      { isHoverable, isSelected } //on regarde si la carte est hoverable et si elle est sélectionnée
+    ) =>
+      isHoverable &&
+      isSelected &&
+      selectedStyle}//si oui, on applique le style selectedStyle
   }
 `;
 
@@ -194,13 +222,22 @@ const hoverableStyle = css`
     transform: scale(1.05);
     transition: ease-out 0.4s;
     cursor: pointer;
-    //box-shadow: 0px 0px 20px 0px rgb(0 0 0 / 20%);
-    /* border: 2px solid ${theme.colors.primary}; */
+    box-shadow: 0px 0px 20px 0px rgb(0 0 0 / 20%);
+    border: 2px solid ${theme.colors.primary};
+
+    //on évite que les enfants soient ait le transform
+    > * {
+      transform: none;
+      transition: ease-out 0.4s;
+      border: none;
+      box-shadow: none;
+    }
   }
 `;
 
 const selectedStyle = css`
   background: ${theme.colors.primary};
+
   .primary-button {
     color: ${theme.colors.primary};
     background-color: ${theme.colors.white};

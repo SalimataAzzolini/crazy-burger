@@ -8,6 +8,7 @@ import OrderContext from "../../context/OrderContext";
 
 import { EMPTY_PRODUCT } from "../../enums/products";
 import { useMenu } from "../../hooks/useMenu";
+import { useBasket } from "../../hooks/useBasket";
 
 export default function OrderPage() {
   //Déclaration des states du context OrderContext
@@ -31,6 +32,9 @@ export default function OrderPage() {
     resetMenu,
   } = useMenu();
 
+  //Fonction custom hook useBasket
+  const { basket, handleAddToBasket, handleDeleteBasketProduct } = useBasket();
+
   //Déclaration du context
   const orderContextValue = {
     isModeAdmin,
@@ -52,6 +56,9 @@ export default function OrderPage() {
     productSelected,
     setProductSelected,
     titleEditRef,
+    basket,
+    handleAddToBasket,
+    handleDeleteBasketProduct,
   };
 
   const location = useLocation();
