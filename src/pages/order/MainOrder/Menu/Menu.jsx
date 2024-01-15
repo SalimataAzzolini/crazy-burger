@@ -12,7 +12,7 @@ import EmptyMenuClient from "./EmptyMenuClient";
 import { checkIfProductIsClicked } from "./helper";
 import { EMPTY_PRODUCT } from "../../../../enums/products";
 import { useBasket } from "../../../../hooks/useBasket";
-import { find } from "../../../../utils/array";
+import { findObjectById, isEmpty } from "../../../../utils/array";
 
 const DEFAULT_IMAGE = "/images/coming-soon.png";
 
@@ -33,7 +33,7 @@ export default function Menu() {
   } = useContext(OrderContext);
 
   // affichage gestion du menu vide
-  if (menu.length === 0) {
+  if (isEmpty(menu)) {
     if (!isModeAdmin) return <EmptyMenuClient />;
     return <EmptyMenuAdmin onReset={resetMenu} />;
   }
@@ -66,8 +66,8 @@ export default function Menu() {
   //event handler add button
   const handleAddButton = (event, idProductToAdd) => {
     event.stopPropagation();
-    //const productToAdd = menu.find((menuProduct) => menuProduct.id === idProductToAdd)
-    const productToAdd = find(idProductToAdd, menu);
+    //const productToAdd = menu.findObjectById((menuProduct) => menuProduct.id === idProductToAdd)
+    const productToAdd = findObjectById(idProductToAdd, menu);
     console.log("productToAdd", productToAdd);
     handleAddToBasket(productToAdd);
   };
