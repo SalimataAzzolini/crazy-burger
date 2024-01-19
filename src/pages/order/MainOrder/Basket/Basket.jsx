@@ -2,7 +2,6 @@ import styled from "styled-components";
 import Total from "./Total";
 import EmptyBasket from "./EmptyBasket";
 import Footer from "./Footer";
-import { formatPrice } from "../../../../utils/maths";
 import { useContext } from "react";
 import OrderContext from "../../../../context/OrderContext";
 import BasketProducts from "./BasketProducts";
@@ -10,31 +9,21 @@ import { theme } from "../../../../theme";
 import { isEmpty } from "../../../../utils/array";
 
 export default function Basket() {
-  const { basket, isModeAdmin, handleDeleteBasketProduct } =
-    useContext(OrderContext);
+  const { basket } = useContext(OrderContext);
 
-  const isBasketEmpty = isEmpty(basket);
+  // const isBasketEmpty = isEmpty(basket);
 
-  const sumToPay = basket.reduce((total, basketProduct) => {
-    if (isNaN(basketProduct.price)) return total;
+  // const sumToPay = basket.reduce((total, basketProduct) => {
+  //   if (isNaN(basketProduct.price)) return total;
 
-    total += basketProduct.price * basketProduct.quantity;
-    return total;
-  }, 0); // 0 is the initial value of total
+  //   total += basketProduct.price * basketProduct.quantity;
+  //   return total;
+  // }, 0); // 0 is the initial value of total
 
   return (
     <BasketStyled>
-      <Total amountToPay={formatPrice(sumToPay)} />
-      {isBasketEmpty ? (
-        <EmptyBasket />
-      ) : (
-        <BasketProducts
-          basket={basket}
-          isModeAdmin={isModeAdmin}
-          handleDeleteBasketProduct={handleDeleteBasketProduct}
-        />
-      )}
-
+      <Total />
+      {isEmpty(basket) ? <EmptyBasket /> : <BasketProducts />}
       <Footer />
     </BasketStyled>
   );

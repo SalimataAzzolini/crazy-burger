@@ -3,17 +3,25 @@ import PropType from "prop-types";
 
 import { theme } from "../../../../theme";
 import Header from "../../../../components/reusable-ui/Header";
+import { calculateSumToPay } from "./Helper";
+import { useContext } from "react";
+import OrderContext from "../../../../context/OrderContext";
+import { formatPrice } from "../../../../utils/maths";
 
 Total.propTypes = {
   amountToPay: PropType.string.isRequired,
 };
 
-export default function Total({ amountToPay }) {
+export default function Total() {
+  const { basket, menu } = useContext(OrderContext);
+
+  const sumToPay = calculateSumToPay(basket, menu);
+
   return (
     <Header>
       <TotalStyled>
         <span className="total">Total</span>
-        <span className="amount">{amountToPay}</span>
+        <span className="amount">{formatPrice(sumToPay)}</span>
       </TotalStyled>
     </Header>
   );

@@ -63,13 +63,18 @@ export default function Menu() {
     titleEditRef.current.focus();
   };
 
-  //event handler add button
+  // //event handler add button
+  // const handleAddButton = (event, idProductToAdd) => {
+  //   event.stopPropagation();
+  //   //const productToAdd = menu.findObjectById((menuProduct) => menuProduct.id === idProductToAdd)
+  //   const productToAdd = findObjectById(idProductToAdd, menu);
+  //   console.log("productToAdd", productToAdd);
+  //   handleAddToBasket(productToAdd);
+  // };
+
   const handleAddButton = (event, idProductToAdd) => {
     event.stopPropagation();
-    //const productToAdd = menu.findObjectById((menuProduct) => menuProduct.id === idProductToAdd)
-    const productToAdd = findObjectById(idProductToAdd, menu);
-    console.log("productToAdd", productToAdd);
-    handleAddToBasket(productToAdd);
+    handleAddToBasket(idProductToAdd);
   };
 
   return (
