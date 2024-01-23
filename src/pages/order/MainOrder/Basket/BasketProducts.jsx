@@ -24,14 +24,15 @@ export default function BasketProducts() {
     productSelected,
   } = useContext(OrderContext);
 
-  const handleOnDelete = (id) => {
+  const handleOnDelete = (event, id) => {
+    event.stopPropagation();
     handleDeleteBasketProduct(id);
   };
 
   return (
     <BasketProductsStyled>
       {basket.map((basketProduct) => {
-        const menuProduct = findObjectById(basketProduct.id, menu);
+        const menuProduct = findObjectById(basketProduct.id, menu); //ici on va chercher le produit qui a l'id du basketProduct dans le menu
         return (
           <div className="basket-card" key={basketProduct.id}>
             <BasketCard

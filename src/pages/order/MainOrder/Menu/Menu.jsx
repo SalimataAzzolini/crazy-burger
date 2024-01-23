@@ -32,12 +32,6 @@ export default function Menu() {
     handleDeleteBasketProduct,
   } = useContext(OrderContext);
 
-  // affichage gestion du menu vide
-  if (isEmpty(menu)) {
-    if (!isModeAdmin) return <EmptyMenuClient />;
-    return <EmptyMenuAdmin onReset={resetMenu} />;
-  }
-
   //event handler card clické (pour l'edit)
   const handleCardClick = async (idProductClicked) => {
     if (!isModeAdmin) return;
@@ -72,10 +66,17 @@ export default function Menu() {
   //   handleAddToBasket(productToAdd);
   // };
 
+  //event handler add button (avec le hook useBasket)
   const handleAddButton = (event, idProductToAdd) => {
     event.stopPropagation();
     handleAddToBasket(idProductToAdd);
   };
+
+  // affichage gestion du menu vide
+  if (isEmpty(menu)) {
+    if (!isModeAdmin) return <EmptyMenuClient />;
+    return <EmptyMenuAdmin onReset={resetMenu} />;
+  }
 
   return (
     <MenuStyled className="menu">
