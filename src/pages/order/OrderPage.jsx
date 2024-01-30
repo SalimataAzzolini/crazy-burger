@@ -9,6 +9,7 @@ import OrderContext from "../../context/OrderContext";
 import { EMPTY_PRODUCT } from "../../enums/products";
 import { useMenu } from "../../hooks/useMenu";
 import { useBasket } from "../../hooks/useBasket";
+import { findObjectById } from "../../utils/array";
 
 export default function OrderPage() {
   //Déclaration des states du context OrderContext
@@ -17,9 +18,9 @@ export default function OrderPage() {
   const [isAddSelected, setIsAddSelected] = useState(true);
   const [isEditSelected, setIsEditSelected] = useState(false);
 
-  // const [currentTabSelected, setCurrentTabSelected] = useState("add");
+  //const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
-  const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
+  const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT); //ici on déclare le produit vide
   const titleEditRef = useRef();
 
   //Fonctions custom hook useMenu
@@ -34,6 +35,17 @@ export default function OrderPage() {
 
   //Fonction custom hook useBasket
   const { basket, handleAddToBasket, handleDeleteBasketProduct } = useBasket();
+
+  //event handler basket card clické (pour l'edit)
+  const handleProductSelected = async (idProductClicked) => {
+    const productClickedOn = findObjectById(idProductClicked, menu); // on récupère le produit cliqué
+    await setIsCollapsed(false);
+    await setIsAddSelected(false);
+    await setIsEditSelected(true);
+    //await setCurrentTabSelected("edit");
+    await setProductSelected(productClickedOn); //on set le produit cliqué dans le state productSelected
+    titleEditRef.current.focus();
+  };
 
   //Déclaration du context
   const orderContextValue = {
@@ -59,6 +71,7 @@ export default function OrderPage() {
     basket,
     handleAddToBasket,
     handleDeleteBasketProduct,
+    handleProductSelected,
   };
 
   const location = useLocation();

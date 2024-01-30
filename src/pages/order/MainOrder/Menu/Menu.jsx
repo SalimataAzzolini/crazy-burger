@@ -12,7 +12,7 @@ import EmptyMenuClient from "./EmptyMenuClient";
 import { checkIfProductIsClicked } from "./helper";
 import { EMPTY_PRODUCT } from "../../../../enums/products";
 import { useBasket } from "../../../../hooks/useBasket";
-import { find } from "../../../../utils/array";
+import { findObjectById, isEmpty } from "../../../../utils/array";
 
 const DEFAULT_IMAGE = "/images/coming-soon.png";
 
@@ -31,12 +31,6 @@ export default function Menu() {
     handleAddToBasket,
     handleDeleteBasketProduct,
   } = useContext(OrderContext);
-
-  // affichage gestion du menu vide
-  if (menu.length === 0) {
-    if (!isModeAdmin) return <EmptyMenuClient />;
-    return <EmptyMenuAdmin onReset={resetMenu} />;
-  }
 
   //event handler card clické (pour l'edit)
   const handleCardClick = async (idProductClicked) => {
@@ -63,14 +57,26 @@ export default function Menu() {
     titleEditRef.current.focus();
   };
 
-  //event handler add button
+  // //event handler add button
+  // const handleAddButton = (event, idProductToAdd) => {
+  //   event.stopPropagation();
+  //   //const productToAdd = menu.findObjectById((menuProduct) => menuProduct.id === idProductToAdd)
+  //   const productToAdd = findObjectById(idProductToAdd, menu);
+  //   console.log("productToAdd", productToAdd);
+  //   handleAddToBasket(productToAdd);
+  // };
+
+  //event handler add button (avec le hook useBasket)
   const handleAddButton = (event, idProductToAdd) => {
     event.stopPropagation();
-    //const productToAdd = menu.find((menuProduct) => menuProduct.id === idProductToAdd)
-    const productToAdd = find(idProductToAdd, menu);
-    console.log("productToAdd", productToAdd);
-    handleAddToBasket(productToAdd);
+    handleAddToBasket(idProductToAdd);
   };
+
+  // affichage gestion du menu vide
+  if (isEmpty(menu)) {
+    if (!isModeAdmin) return <EmptyMenuClient />;
+    return <EmptyMenuAdmin onReset={resetMenu} />;
+  }
 
   return (
     <MenuStyled className="menu">

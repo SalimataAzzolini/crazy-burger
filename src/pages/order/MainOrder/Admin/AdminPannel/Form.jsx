@@ -9,10 +9,6 @@ const Form = React.forwardRef(function Form(
   { product, onSubmit, onChange, children },
   ref
 ) {
-  // state (vide)
-
-  // comportements (vide)
-
   //input texts config
   const inputTexts = getInputTextsConfig(product);
 
