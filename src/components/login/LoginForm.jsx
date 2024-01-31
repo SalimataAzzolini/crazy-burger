@@ -7,6 +7,7 @@ import { theme } from "../../theme";
 import TextInput from "../reusable-ui/TextInput";
 import { BsPersonCircle } from "react-icons/bs";
 import PrimaryButton from "../reusable-ui/Button";
+import { createUser } from "../../api/user";
 
 const LoginForm = () => {
   let navigate = useNavigate();
@@ -18,6 +19,7 @@ const LoginForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    createUser(username);
     navigate("/order", { replace: true, state: { username } });
     setUsername("");
   };

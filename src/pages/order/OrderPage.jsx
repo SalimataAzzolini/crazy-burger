@@ -81,6 +81,8 @@ export default function OrderPage() {
   }
   const { username } = state;
 
+  // getUser("Alex");
+
   return (
     <OrderContext.Provider value={orderContextValue}>
       <OrderPageStyled>

@@ -1,9 +1,7 @@
-/* eslint-disable no-unused-vars */
 import styled from "styled-components";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 import { formatPrice } from "../../../../utils/maths";
-import { fakeMenu } from "../../../../fakeData/fakeMenu";
 import { theme } from "../../../../theme";
 import Card from "../../../../components/reusable-ui/Card";
 import OrderContext from "../../../../context/OrderContext";
@@ -11,8 +9,7 @@ import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { checkIfProductIsClicked } from "./helper";
 import { EMPTY_PRODUCT } from "../../../../enums/products";
-import { useBasket } from "../../../../hooks/useBasket";
-import { findObjectById, isEmpty } from "../../../../utils/array";
+import { isEmpty } from "../../../../utils/array";
 
 const DEFAULT_IMAGE = "/images/coming-soon.png";
 
