@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Navbar from "./Navbar/Navbar";
 import MainOrder from "./MainOrder/MainOrder";
@@ -74,12 +74,12 @@ export default function OrderPage() {
     handleProductSelected,
   };
 
-  const location = useLocation();
-  const { state } = location;
-  if (!state || !state.username) {
-    return <div>Erreur: Nom nom transmis</div>;
-  }
-  const { username } = state;
+  // const location = useLocation();
+  // const { state } = location;
+  // if (!state || !state.username) {
+  //   return <div>Erreur: Nom nom transmis</div>;
+  // }
+  // const { username } = state;
 
   // getUser("Alex");
 
@@ -87,7 +87,7 @@ export default function OrderPage() {
     <OrderContext.Provider value={orderContextValue}>
       <OrderPageStyled>
         <div className="container">
-          <Navbar username={username} />
+          <Navbar />
           <MainOrder />
         </div>
       </OrderPageStyled>
