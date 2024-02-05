@@ -1,18 +1,20 @@
 import { useState } from "react";
 import { fakeMenu } from "../fakeData/fakeMenu";
 import { deepClone } from "../utils/array";
+import { syncBothMenus } from "../api/product";
 
 export const useMenu = () => {
   const [menu, setMenu] = useState(fakeMenu.LARGE);
 
   //Gestionnaire de state Ajout de produit
-  const handleAddProduct = (newProduct) => {
+  const handleAddProduct = (newProduct, username) => {
     // 1. copie du state (deep clone)
     const menuCopy = [...menu];
     // 2. manip de la copie du state
     const menuUpdated = [newProduct, ...menuCopy];
     // 3. update du state
     setMenu(menuUpdated);
+    syncBothMenus(username, menuUpdated);
   };
 
   //Gestionnaire de state Suppression de produit

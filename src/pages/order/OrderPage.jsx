@@ -10,6 +10,7 @@ import { EMPTY_PRODUCT } from "../../enums/products";
 import { useMenu } from "../../hooks/useMenu";
 import { useBasket } from "../../hooks/useBasket";
 import { findObjectById } from "../../utils/array";
+import { useParams } from "react-router-dom";
 
 export default function OrderPage() {
   //Déclaration des states du context OrderContext
@@ -22,6 +23,8 @@ export default function OrderPage() {
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT); //ici on déclare le produit vide
   const titleEditRef = useRef();
+
+  const { username } = useParams();
 
   //Fonctions custom hook useMenu
   const {
@@ -49,6 +52,7 @@ export default function OrderPage() {
 
   //Déclaration du context
   const orderContextValue = {
+    username,
     isModeAdmin,
     setIsModeAdmin,
     isCollapsed,
@@ -80,8 +84,6 @@ export default function OrderPage() {
   //   return <div>Erreur: Nom nom transmis</div>;
   // }
   // const { username } = state;
-
-  // getUser("Alex");
 
   return (
     <OrderContext.Provider value={orderContextValue}>
