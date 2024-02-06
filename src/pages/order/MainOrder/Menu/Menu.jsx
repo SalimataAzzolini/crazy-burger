@@ -15,6 +15,7 @@ const DEFAULT_IMAGE = "/images/coming-soon.png";
 
 export default function Menu() {
   const {
+    username,
     menu,
     resetMenu,
     isModeAdmin,
@@ -47,7 +48,7 @@ export default function Menu() {
   //event handler card delete
   const handleCardDelete = (event, idProductToDelete) => {
     event.stopPropagation();
-    handleDeleteProduct(idProductToDelete);
+    handleDeleteProduct(idProductToDelete, username);
     handleDeleteBasketProduct(idProductToDelete);
     idProductToDelete === productSelected.id &&
       setProductSelected(EMPTY_PRODUCT); //gestion du produit vide pour l'affichage du hint message

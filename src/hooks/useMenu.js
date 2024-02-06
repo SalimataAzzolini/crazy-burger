@@ -18,10 +18,13 @@ export const useMenu = () => {
   };
 
   //Gestionnaire de state Suppression de produit
-  const handleDeleteProduct = (productId) => {
+  const handleDeleteProduct = (idOfProductToDeleteproduct, username) => {
     const menuCopy = [...menu];
-    const menuUpdated = menuCopy.filter((product) => product.id !== productId);
+    const menuUpdated = menuCopy.filter(
+      (product) => product.id !== idOfProductToDeleteproduct
+    );
     setMenu(menuUpdated);
+    syncBothMenus(username, menuUpdated);
   };
 
   const handleEditProduct = (productBeingEdited) => {
