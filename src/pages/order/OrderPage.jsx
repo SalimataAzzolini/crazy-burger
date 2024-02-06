@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Navbar from "./Navbar/Navbar";
 import MainOrder from "./MainOrder/MainOrder";
 import { theme } from "../../theme";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import OrderContext from "../../context/OrderContext";
 
 import { EMPTY_PRODUCT } from "../../enums/products";
@@ -11,6 +11,7 @@ import { useMenu } from "../../hooks/useMenu";
 import { useBasket } from "../../hooks/useBasket";
 import { findObjectById } from "../../utils/array";
 import { useParams } from "react-router-dom";
+import { initialiseUserSession } from "./helpers/initialiseUserSession";
 
 export default function OrderPage() {
   //Déclaration des states du context OrderContext
@@ -37,7 +38,8 @@ export default function OrderPage() {
   } = useMenu();
 
   //Fonction custom hook useBasket
-  const { basket, handleAddToBasket, handleDeleteBasketProduct } = useBasket();
+  const { basket, setBasket, handleAddToBasket, handleDeleteBasketProduct } =
+    useBasket();
 
   //event handler basket card clické (pour l'edit)
   const handleProductSelected = async (idProductClicked) => {
@@ -49,6 +51,10 @@ export default function OrderPage() {
     await setProductSelected(productClickedOn); //on set le produit cliqué dans le state productSelected
     titleEditRef.current.focus();
   };
+
+  useEffect(() => {
+    initialiseUserSession(username, setMenu, setBasket);
+  }, []);
 
   //Déclaration du context
   const orderContextValue = {
