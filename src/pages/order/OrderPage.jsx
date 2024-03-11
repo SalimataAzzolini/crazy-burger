@@ -54,7 +54,7 @@ export default function OrderPage() {
 
   useEffect(() => {
     initialiseUserSession(username, setMenu, setBasket);
-  }, []);
+  }, [username, setMenu, setBasket]);
 
   //Déclaration du context
   const orderContextValue = {
