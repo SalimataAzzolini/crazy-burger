@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import PropTypes from "prop-types";
 import NavbarRigthSide from "./NavbarRigthSide";
 
 import Logo from "../../../components/reusable-ui/Logo";
@@ -14,10 +13,6 @@ export default function Navbar() {
     </NavBarStyled>
   );
 }
-
-Navbar.propTypes = {
-  username: PropTypes.string.isRequired,
-};
 
 const NavBarStyled = styled.nav`
   background: ${theme.colors.white};
