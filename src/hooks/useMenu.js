@@ -27,7 +27,7 @@ export const useMenu = () => {
     syncBothMenus(username, menuUpdated);
   };
 
-  const handleEditProduct = (productBeingEdited) => {
+  const handleEditProduct = (productBeingEdited, username) => {
     // 1. copie du state (deep clone)
     const menuCopy = deepClone(menu);
     // 2. manip de la copie du state
@@ -35,14 +35,16 @@ export const useMenu = () => {
       (menuProduct) => menuProduct.id === productBeingEdited.id
     );
     menuCopy[indexOfProductToEdit] = productBeingEdited; //assignation d'une nouvelle valeur à l'index du produit à éditer par le produit édité
+
     // 3. update du state
     setMenu(menuCopy);
+    syncBothMenus(username, menuCopy);
   };
 
   //Reset du menu à la version initiale
   const resetMenu = (username) => {
-    setMenu(fakeMenu.SMALL);
-    syncBothMenus(username, fakeMenu.SMALL);
+    setMenu(fakeMenu.MEDIUM);
+    syncBothMenus(username, fakeMenu.MEDIUM);
   };
 
   return {

@@ -8,6 +8,7 @@ import Form from "./Form";
 const EditForm = React.forwardRef(function EditForm() {
   //ici on utilise le forwardRef pour pouvoir utiliser la ref dans le composant parent
   const {
+    username,
     productSelected,
     setProductSelected,
     handleEditProduct,
@@ -21,7 +22,7 @@ const EditForm = React.forwardRef(function EditForm() {
     const productBeingUpdated = { ...productSelected, [name]: value };
 
     setProductSelected(productBeingUpdated); // update du formulaire
-    handleEditProduct(productBeingUpdated, event); // State handler Update du menu
+    handleEditProduct(productBeingUpdated, username); // State handler Update du menu
   };
 
   return (
