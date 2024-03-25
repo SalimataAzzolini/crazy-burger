@@ -4,7 +4,7 @@ import { theme } from "../../../../theme";
 import Button from "../../../../components/reusable-ui/Button";
 
 EmptyMenuAdmin.propTypes = {
-  onReset: PropTypes.func.isRequired,
+  onReset: PropTypes.func,
 };
 
 export default function EmptyMenuAdmin({ onReset }) {

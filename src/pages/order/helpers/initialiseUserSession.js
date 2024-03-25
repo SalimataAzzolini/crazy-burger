@@ -3,11 +3,13 @@ import { getLocalStorage } from "../../../utils/window";
 
 const intialiseMenu = async (username, setMenu) => {
   const menuReceived = await getMenu(username);
+  console.log("menuReceived", menuReceived);
   setMenu(menuReceived);
 };
 
 const intialiseBasket = (username, setBasket) => {
   const basketReceived = getLocalStorage(username); // localStorage est synchrone, pas besoin de "await".
+  console.log("basketReceived", basketReceived);
   if (basketReceived) setBasket(basketReceived);
 };
 

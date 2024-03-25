@@ -11,7 +11,7 @@ import {
 export const useBasket = () => {
   const [basket, setBasket] = useState(fakeBasket.EMPTY);
 
-  // //Créer un nouveau produit dans le basket
+  //Créer un nouveau produit dans le basket
   // const createNewProductInBasket = (productToAdd, basketCopy, setBasket) => {
   //   const newBasketProduct = {
   //     ...productToAdd,

@@ -20,7 +20,7 @@ export const createUser = (userId) => {
   // NOURRITURE
   const nourriture = {
     username: userId,
-    menu: fakeMenu.SMALL,
+    menu: fakeMenu.MEDIUM,
   };
 
   //setDoc(CACHETTE, NOURRITURE)

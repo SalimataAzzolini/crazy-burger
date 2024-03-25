@@ -12,6 +12,7 @@ export const syncBothMenus = (userId, menuUpdated) => {
   setDoc(cachette, nourriture);
 };
 
+//Fonction récupération du menu de l'utilisateur et si il n'existe pas, on le crée
 export const getMenu = async (idUser) => {
   //const docRef = doc(CHEMIN)
   const docRef = doc(db, "users", idUser);
@@ -19,6 +20,7 @@ export const getMenu = async (idUser) => {
   const docSnapshot = await getDoc(docRef);
   if (docSnapshot.exists()) {
     const { menu } = docSnapshot.data();
+
     return menu;
   }
 };

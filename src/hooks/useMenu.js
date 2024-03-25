@@ -40,7 +40,6 @@ export const useMenu = () => {
   };
 
   //Reset du menu à la version initiale
-
   const resetMenu = (username) => {
     setMenu(fakeMenu.SMALL);
     syncBothMenus(username, fakeMenu.SMALL);
