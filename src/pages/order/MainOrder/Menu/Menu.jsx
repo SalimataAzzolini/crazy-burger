@@ -68,7 +68,7 @@ export default function Menu() {
   //event handler add button (avec le hook useBasket)
   const handleAddButton = (event, idProductToAdd) => {
     event.stopPropagation();
-    handleAddToBasket(idProductToAdd);
+    handleAddToBasket(idProductToAdd, username);
   };
 
   // AFFICHAGE

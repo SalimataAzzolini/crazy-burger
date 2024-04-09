@@ -47,7 +47,7 @@ export default function NavbarRigthSide() {
 }
 
 NavbarRigthSide.propTypes = {
-  username: PropTypes.string.isRequired,
+  username: PropTypes.string,
 };
 
 const NavBarStyledRigthSide = styled.nav`
