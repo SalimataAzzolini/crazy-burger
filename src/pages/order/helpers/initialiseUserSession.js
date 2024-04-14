@@ -9,7 +9,7 @@ const intialiseMenu = async (username, setMenu) => {
 
 const intialiseBasket = (username, setBasket) => {
   const basketReceived = getLocalStorage(username); // localStorage est synchrone, pas besoin de "await".
-  //console.log("basketReceived", basketReceived);
+  console.log("basketReceived", basketReceived);
   if (basketReceived) setBasket(basketReceived);
 };
 

@@ -9,21 +9,19 @@ import { theme } from "../../../../theme";
 import { isEmpty } from "../../../../utils/array";
 
 export default function Basket() {
-  const { basket } = useContext(OrderContext);
+  const { basket, menu } = useContext(OrderContext);
 
   // const isBasketEmpty = isEmpty(basket);
-
-  // const sumToPay = basket.reduce((total, basketProduct) => {
-  //   if (isNaN(basketProduct.price)) return total;
-
-  //   total += basketProduct.price * basketProduct.quantity;
-  //   return total;
-  // }, 0); // 0 is the initial value of total
 
   return (
     <BasketStyled>
       <Total />
-      {isEmpty(basket) ? <EmptyBasket /> : <BasketProducts />}
+      {isEmpty(basket) ? (
+        <EmptyBasket isLoading={menu === undefined} />
+      ) : (
+        <BasketProducts />
+      )}
+
       <Footer />
     </BasketStyled>
   );
