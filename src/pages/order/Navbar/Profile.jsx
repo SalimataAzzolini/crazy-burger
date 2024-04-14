@@ -1,37 +1,32 @@
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { BsPersonCircle } from "react-icons/bs";
-import { theme } from '../../../theme';
+import { theme } from "../../../theme";
+import OrderContext from "../../../context/OrderContext";
+import { useContext } from "react";
 
+export default function Profile() {
+  const { username } = useContext(OrderContext);
 
-Profile.propTypes = {
-  username: PropTypes.string.isRequired,
-}
-
-export default function Profile({username}) {
   return (
+    <ProfileStyled>
+      <div className="info">
+        <p>
+          Hey, <b>{username}</b>
+        </p>
+        <Link to="/">
+          <div className="description">
+            <small>Se déconnecter</small>
+          </div>
+        </Link>
+      </div>
 
-        <ProfileStyled>
-            <div className="info">
-                <p>
-                    Hey, <b>{username}</b>
-                </p>
-                <Link to="/">
-                    <div className="description">
-                    <small>Se déconnecter</small>
-                    </div>
-                </Link>
-            </div>
-            
-            <div className="picture">
-                <BsPersonCircle />
-            </div>
-        </ProfileStyled>
-  )
+      <div className="picture">
+        <BsPersonCircle />
+      </div>
+    </ProfileStyled>
+  );
 }
-
-
 
 const ProfileStyled = styled.div`
   display: flex;
@@ -76,7 +71,4 @@ const ProfileStyled = styled.div`
     font-size: ${theme.fonts.size.P4};
     color: ${theme.colors.greyBlue};
   }
-`
-
-
-
+`;

@@ -8,7 +8,7 @@ import SubmitButton from "./SubmitButton";
 import { useSuccessMessage } from "../../../../../hooks/useSuccessMessage";
 
 export default function AddForm() {
-  const { handleAddProduct, newProduct, setNewProduct } =
+  const { username, handleAddProduct, newProduct, setNewProduct } =
     useContext(OrderContext);
 
   //Custom hook to display success messages
@@ -26,7 +26,7 @@ export default function AddForm() {
       id: crypto.randomUUID(),
     };
 
-    handleAddProduct(newProductToAdd);
+    handleAddProduct(newProductToAdd, username);
     setNewProduct(EMPTY_PRODUCT);
     displaySuccessMessage();
   };

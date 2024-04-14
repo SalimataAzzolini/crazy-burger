@@ -7,6 +7,8 @@ import { theme } from "../../theme";
 import TextInput from "../reusable-ui/TextInput";
 import { BsPersonCircle } from "react-icons/bs";
 import PrimaryButton from "../reusable-ui/Button";
+import { authenticateUser } from "../../api/user";
+import Welcome from "./Welcome";
 
 const LoginForm = () => {
   let navigate = useNavigate();
@@ -16,17 +18,18 @@ const LoginForm = () => {
     setUsername(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    navigate("/order", { replace: true, state: { username } });
+  // comportements
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    authenticateUser(username);
     setUsername("");
+    navigate(`order/${username}`);
+    // navigate("/order", { replace: true, state: { username } });
   };
 
   return (
     <LoginFormStyled onSubmit={handleSubmit}>
-      <h1> Bienvenue chez nous ! </h1>
-      <hr />
-      <h4> Connecte-toi</h4>
+      <Welcome />
 
       <TextInput
         value={username}

@@ -1,9 +1,7 @@
-/* eslint-disable no-unused-vars */
 import styled from "styled-components";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 import { formatPrice } from "../../../../utils/maths";
-import { fakeMenu } from "../../../../fakeData/fakeMenu";
 import { theme } from "../../../../theme";
 import Card from "../../../../components/reusable-ui/Card";
 import OrderContext from "../../../../context/OrderContext";
@@ -11,13 +9,14 @@ import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { checkIfProductIsClicked } from "./helper";
 import { EMPTY_PRODUCT } from "../../../../enums/products";
-import { useBasket } from "../../../../hooks/useBasket";
-import { findObjectById, isEmpty } from "../../../../utils/array";
+import { isEmpty } from "../../../../utils/array";
+import Loader from "./Loader";
 
 const DEFAULT_IMAGE = "/images/coming-soon.png";
 
 export default function Menu() {
   const {
+    username,
     menu,
     resetMenu,
     isModeAdmin,
@@ -50,8 +49,8 @@ export default function Menu() {
   //event handler card delete
   const handleCardDelete = (event, idProductToDelete) => {
     event.stopPropagation();
-    handleDeleteProduct(idProductToDelete);
-    handleDeleteBasketProduct(idProductToDelete);
+    handleDeleteProduct(idProductToDelete, username);
+    handleDeleteBasketProduct(idProductToDelete, username);
     idProductToDelete === productSelected.id &&
       setProductSelected(EMPTY_PRODUCT); //gestion du produit vide pour l'affichage du hint message
     titleEditRef.current.focus();
@@ -69,13 +68,16 @@ export default function Menu() {
   //event handler add button (avec le hook useBasket)
   const handleAddButton = (event, idProductToAdd) => {
     event.stopPropagation();
-    handleAddToBasket(idProductToAdd);
+    handleAddToBasket(idProductToAdd, username);
   };
 
-  // affichage gestion du menu vide
+  // AFFICHAGE
+
+  if (menu === undefined) return <Loader />;
+
   if (isEmpty(menu)) {
     if (!isModeAdmin) return <EmptyMenuClient />;
-    return <EmptyMenuAdmin onReset={resetMenu} />;
+    return <EmptyMenuAdmin onReset={() => resetMenu(username)} />;
   }
 
   return (

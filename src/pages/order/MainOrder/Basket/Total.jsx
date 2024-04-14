@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import PropType from "prop-types";
 
 import { theme } from "../../../../theme";
 import Header from "../../../../components/reusable-ui/Header";
@@ -7,10 +6,6 @@ import { calculateSumToPay } from "./Helper";
 import { useContext } from "react";
 import OrderContext from "../../../../context/OrderContext";
 import { formatPrice } from "../../../../utils/maths";
-
-Total.propTypes = {
-  amountToPay: PropType.string.isRequired,
-};
 
 export default function Total() {
   const { basket, menu } = useContext(OrderContext);

@@ -1,20 +1,22 @@
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Navbar from "./Navbar/Navbar";
 import MainOrder from "./MainOrder/MainOrder";
 import { theme } from "../../theme";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import OrderContext from "../../context/OrderContext";
 
 import { EMPTY_PRODUCT } from "../../enums/products";
 import { useMenu } from "../../hooks/useMenu";
 import { useBasket } from "../../hooks/useBasket";
 import { findObjectById } from "../../utils/array";
+import { useParams } from "react-router-dom";
+import { initialiseUserSession } from "./helpers/initialiseUserSession";
 
 export default function OrderPage() {
   //Déclaration des states du context OrderContext
   const [isModeAdmin, setIsModeAdmin] = useState(false);
-  const [isCollapsed, setIsCollapsed] = useState(true);
+  const [isCollapsed, setIsCollapsed] = useState(false);
   const [isAddSelected, setIsAddSelected] = useState(true);
   const [isEditSelected, setIsEditSelected] = useState(false);
 
@@ -22,6 +24,8 @@ export default function OrderPage() {
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT); //ici on déclare le produit vide
   const titleEditRef = useRef();
+
+  const { username } = useParams();
 
   //Fonctions custom hook useMenu
   const {
@@ -34,7 +38,8 @@ export default function OrderPage() {
   } = useMenu();
 
   //Fonction custom hook useBasket
-  const { basket, handleAddToBasket, handleDeleteBasketProduct } = useBasket();
+  const { basket, setBasket, handleAddToBasket, handleDeleteBasketProduct } =
+    useBasket();
 
   //event handler basket card clické (pour l'edit)
   const handleProductSelected = async (idProductClicked) => {
@@ -47,8 +52,13 @@ export default function OrderPage() {
     titleEditRef.current.focus();
   };
 
+  useEffect(() => {
+    initialiseUserSession(username, setMenu, setBasket);
+  }, [username, setMenu, setBasket]);
+
   //Déclaration du context
   const orderContextValue = {
+    username,
     isModeAdmin,
     setIsModeAdmin,
     isCollapsed,
@@ -74,18 +84,18 @@ export default function OrderPage() {
     handleProductSelected,
   };
 
-  const location = useLocation();
-  const { state } = location;
-  if (!state || !state.username) {
-    return <div>Erreur: Nom nom transmis</div>;
-  }
-  const { username } = state;
+  // const location = useLocation();
+  // const { state } = location;
+  // if (!state || !state.username) {
+  //   return <div>Erreur: Nom nom transmis</div>;
+  // }
+  // const { username } = state;
 
   return (
     <OrderContext.Provider value={orderContextValue}>
       <OrderPageStyled>
         <div className="container">
-          <Navbar username={username} />
+          <Navbar />
           <MainOrder />
         </div>
       </OrderPageStyled>
