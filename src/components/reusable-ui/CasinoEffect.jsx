@@ -13,7 +13,11 @@ export default function CasinoEffect({ count, className }) {
       component={CasinoEffectStyled}
       className="transition-group"
     >
-      <CSSTransition classNames="count-animated" timeout={300} key={count}>
+      <CSSTransition
+        classNames="count-animated"
+        timeout={300}
+        key={count} //ajout key (props count) ,un state pour que le composant soit rerender pour que l'animation se fasse
+      >
         <span className={className}>{count}</span>
       </CSSTransition>
     </TransitionGroup>
