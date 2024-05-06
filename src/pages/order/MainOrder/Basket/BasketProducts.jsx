@@ -7,6 +7,8 @@ import { findObjectById } from "../../../../utils/array";
 import { useContext } from "react";
 import OrderContext from "../../../../context/OrderContext";
 import { checkIfProductIsClicked } from "../Menu/helper";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { basketAnimation } from "../../../../theme/animation";
 
 BasketProducts.propTypes = {
   basket: PropType.array,
@@ -31,35 +33,46 @@ export default function BasketProducts() {
   };
 
   return (
-    <BasketProductsStyled>
+    <TransitionGroup
+      component={BasketProductsStyled}
+      className={"transition-group"}
+    >
       {basket.map((basketProduct) => {
         const menuProduct = findObjectById(basketProduct.id, menu); //ici on va chercher le produit qui a l'id du basketProduct dans le menu
         return (
-          <div className="basket-card" key={basketProduct.id}>
-            <BasketCard
-              {...menuProduct}
-              imageSource={
-                menuProduct.imageSource
-                  ? menuProduct.imageSource
-                  : IMAGE_COMING_SOON
-              }
-              quantity={basketProduct.quantity}
-              onDelete={(event) => handleOnDelete(event, basketProduct.id)}
-              isClickable={isModeAdmin}
-              onClick={
-                isModeAdmin
-                  ? () => handleProductSelected(basketProduct.id)
-                  : null
-              }
-              isSelected={checkIfProductIsClicked(
-                basketProduct.id,
-                productSelected.id
-              )}
-            />
-          </div>
+          <CSSTransition
+            key={basketProduct.id}
+            appear={true}
+            timeout={{ enter: 500, exit: 500 }}
+            classNames={"animation-basket"}
+          >
+            <div className="basket-card">
+              <BasketCard
+                {...menuProduct}
+                imageSource={
+                  menuProduct.imageSource
+                    ? menuProduct.imageSource
+                    : IMAGE_COMING_SOON
+                }
+                quantity={basketProduct.quantity}
+                onDelete={(event) => handleOnDelete(event, basketProduct.id)}
+                isClickable={isModeAdmin}
+                onClick={
+                  isModeAdmin
+                    ? () => handleProductSelected(basketProduct.id)
+                    : null
+                }
+                isSelected={checkIfProductIsClicked(
+                  basketProduct.id,
+                  productSelected.id
+                )}
+                className="one-card"
+              />
+            </div>
+          </CSSTransition>
         );
       })}
-    </BasketProductsStyled>
+    </TransitionGroup>
   );
 }
 
@@ -87,17 +100,67 @@ const BasketProductsStyled = styled.div`
   flex-direction: column;
   overflow-y: scroll;
 
+  .animation-basket-appear {
+    .one-card {
+      transform: translateX(100px);
+      opacity: 0;
+    }
+  }
+  .animation-basket-appear-active {
+    .one-card {
+      transition: 500ms;
+      transform: translateX(0px);
+      opacity: 1;
+    }
+  }
+  .animation-basket-enter {
+    .one-card {
+      transform: translateX(100px);
+      opacity: 0;
+    }
+  }
+  .animation-basket-enter-active {
+    .one-card {
+      transition: 500ms;
+      transform: translateX(0px);
+      opacity: 1;
+    }
+  }
+  .animation-basket-enter-active {
+    .one-card {
+      transition: 500ms;
+      transform: translateX(0px);
+      opacity: 1;
+    }
+  }
+
+  .animation-basket-exit {
+    .one-card {
+      transform: translateX(0px);
+      opacity: 1;
+    }
+  }
+
+  .animation-basket-exit-active {
+    .one-card {
+      transition: 500ms;
+      transform: translateX(-100px);
+      opacity: 0;
+    }
+  }
+
   .basket-card {
     margin: 10px 16px;
     height: 90px;
     box-sizing: border-box;
 
-    /* :last-child {
-      margin-bottom: 20px;
-    } */
+    ${basketAnimation}
   }
 `;
 
+// :last-child {
+//     margin-bottom: 20px;
+//   }
 // :first-child {
 //   margin-top: 20px;
 //   /* border: 1px solid red; */
