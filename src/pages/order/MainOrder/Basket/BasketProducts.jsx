@@ -46,7 +46,7 @@ export default function BasketProducts() {
             timeout={{ enter: 500, exit: 500 }}
             classNames={"animation-basket"}
           >
-            <div className="basket-card">
+            <div className="card-container">
               <BasketCard
                 {...menuProduct}
                 imageSource={
@@ -66,7 +66,7 @@ export default function BasketProducts() {
                   basketProduct.id,
                   productSelected.id
                 )}
-                className="one-card"
+                className="card"
               />
             </div>
           </CSSTransition>
@@ -100,62 +100,12 @@ const BasketProductsStyled = styled.div`
   flex-direction: column;
   overflow-y: scroll;
 
-  .animation-basket-appear {
-    .one-card {
-      transform: translateX(100px);
-      opacity: 0;
-    }
-  }
-  .animation-basket-appear-active {
-    .one-card {
-      transition: 500ms;
-      transform: translateX(0px);
-      opacity: 1;
-    }
-  }
-  .animation-basket-enter {
-    .one-card {
-      transform: translateX(100px);
-      opacity: 0;
-    }
-  }
-  .animation-basket-enter-active {
-    .one-card {
-      transition: 500ms;
-      transform: translateX(0px);
-      opacity: 1;
-    }
-  }
-  .animation-basket-enter-active {
-    .one-card {
-      transition: 500ms;
-      transform: translateX(0px);
-      opacity: 1;
-    }
-  }
-
-  .animation-basket-exit {
-    .one-card {
-      transform: translateX(0px);
-      opacity: 1;
-    }
-  }
-
-  .animation-basket-exit-active {
-    .one-card {
-      transition: 500ms;
-      transform: translateX(-100px);
-      opacity: 0;
-    }
-  }
-
-  .basket-card {
+  .card-container {
     margin: 10px 16px;
     height: 90px;
     box-sizing: border-box;
-
-    ${basketAnimation}
   }
+  ${basketAnimation}
 `;
 
 // :last-child {
