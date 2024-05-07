@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { theme } from "../../../../../theme";
+import { fadeInFromRight } from "../../../../../theme/animation";
 
 ImagePreview.propTypes = {
   imageSource: PropTypes.string,
@@ -24,6 +25,7 @@ const ImagePreviewStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: ${fadeInFromRight} ${theme.animations.speed.slow} ease-out;
 
   img {
     width: 120px;
