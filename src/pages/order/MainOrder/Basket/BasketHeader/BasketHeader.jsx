@@ -6,7 +6,7 @@ import { calculateSumToPay } from "./Helper";
 import { useContext } from "react";
 import OrderContext from "../../../../../context/OrderContext";
 import { formatPrice } from "../../../../../utils/maths";
-import CasinoEffect from "../../../../../components/reusable-ui/casinoEffect";
+import CasinoEffect from "../../../../../components/reusable-ui/CasinoEffect";
 
 export default function BasketHeader() {
   const { basket, menu } = useContext(OrderContext);
