@@ -13,24 +13,27 @@ export const getUser = async (idUser) => {
   }
 };
 
-export const createUser = (userId) => {
+export const createUser = async (userId) => {
   // CACHETTE
   const docRef = doc(db, "users", userId);
 
   // NOURRITURE
-  const nourriture = {
+  const newUserToCreate = {
     username: userId,
     menu: fakeMenu.MEDIUM,
   };
 
   //setDoc(CACHETTE, NOURRITURE)
-  setDoc(docRef, nourriture);
+  await setDoc(docRef, newUserToCreate);
+
+  return newUserToCreate;
 };
 
 export const authenticateUser = async (userId) => {
   const existingUser = await getUser(userId);
 
   if (!existingUser) {
-    createUser(userId);
+    await createUser(userId);
   }
+  return existingUser;
 };
