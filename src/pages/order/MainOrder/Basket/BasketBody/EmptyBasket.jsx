@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { theme } from "../../../../theme";
-import { BASKET_MESSAGE } from "../../../../enums/products";
+import { theme } from "../../../../../theme";
+import { BASKET_MESSAGE } from "../../../../../enums/products";
 
 export default function EmptyBasket({ isLoading }) {
   return (
