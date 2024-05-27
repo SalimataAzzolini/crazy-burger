@@ -50,13 +50,11 @@ const fonts = {
     bold: 700,
     heavy: 800,
   },
-
   family: {
-    stylish: `"Amatic SC", cursive`,
+    stylish: '"Amatic SC", cursive',
   },
 };
 const gridUnit = 8;
-
 const borderRadius = {
   subtle: 1,
   round: "5px",
@@ -73,6 +71,13 @@ const shadows = {
   cardBasket: "-4px 4px 15px 0 rgb(0 0 0 / 20%)",
 };
 
+const animations = {
+  speed: {
+    quick: "300ms",
+    slow: "500ms",
+  },
+};
+
 export const theme = {
   colors,
   fonts,
@@ -80,4 +85,5 @@ export const theme = {
   borderRadius,
   shadows,
   spacing,
+  animations,
 };

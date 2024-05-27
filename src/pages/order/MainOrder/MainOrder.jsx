@@ -19,7 +19,6 @@ export default function MainOrder() {
     </MainOrderStyled>
   );
 }
-
 const MainOrderStyled = styled.div`
   background: ${theme.colors.background_white};
   height: calc(95vh - 10vh); /* flex-grow: 1; */

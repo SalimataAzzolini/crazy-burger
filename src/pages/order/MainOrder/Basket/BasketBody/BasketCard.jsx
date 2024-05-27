@@ -1,8 +1,9 @@
 import PropType from "prop-types";
 import styled, { css } from "styled-components";
 import { MdDeleteForever } from "react-icons/md";
-import { formatPrice } from "../../../../utils/maths";
-import { theme } from "../../../../theme";
+import { formatPrice } from "../../../../../utils/maths";
+import { theme } from "../../../../../theme";
+import CasinoEffect from "../../../../../components/reusable-ui/CasinoEffect";
 
 BasketCard.propTypes = {
   title: PropType.string,
@@ -48,7 +49,7 @@ export default function BasketCard({
           <span className="price">{formatPrice(price)}</span>
         </div>
         <div className="quantity">
-          <span>x {quantity}</span>
+          <CasinoEffect count={`x ${quantity}`} />
         </div>
       </div>
     </BasketCardStyled>

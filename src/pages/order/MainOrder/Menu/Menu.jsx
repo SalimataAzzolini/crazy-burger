@@ -11,6 +11,8 @@ import { checkIfProductIsClicked } from "./helper";
 import { EMPTY_PRODUCT } from "../../../../enums/products";
 import { isEmpty } from "../../../../utils/array";
 import Loader from "./Loader";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { menuAnimation } from "../../../../theme/animation";
 
 const DEFAULT_IMAGE = "/images/coming-soon.png";
 
@@ -81,26 +83,28 @@ export default function Menu() {
   }
 
   return (
-    <MenuStyled className="menu">
+    <TransitionGroup component={MenuStyled} className="menu">
       {menu.map(
         (
           { id, title, imageSource, price } //on map sur le menu avec les props de chaque produit
         ) => (
-          <Card
-            key={id}
-            title={title}
-            imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
-            leftDescription={formatPrice(price)}
-            isModeAdmin={isModeAdmin}
-            onClick={() => handleCardClick(id)}
-            isHoverable={isModeAdmin}
-            isSelected={checkIfProductIsClicked(id, productSelected.id)}
-            onDeleteCard={(event) => handleCardDelete(event, id)}
-            onAdd={(event) => handleAddButton(event, id)} //au moment du click sur le bouton add du menu vers le panier, on récupère l'id du produit cliqué
-          />
+          <CSSTransition classNames={"menu-animation"} key={id} timeout={300}>
+            <Card
+              key={id}
+              title={title}
+              imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
+              leftDescription={formatPrice(price)}
+              isModeAdmin={isModeAdmin}
+              onClick={() => handleCardClick(id)}
+              isHoverable={isModeAdmin}
+              isSelected={checkIfProductIsClicked(id, productSelected.id)}
+              onDeleteCard={(event) => handleCardDelete(event, id)}
+              onAdd={(event) => handleAddButton(event, id)} //au moment du click sur le bouton add du menu vers le panier, on récupère l'id du produit cliqué
+            />
+          </CSSTransition>
         )
       )}
-    </MenuStyled>
+    </TransitionGroup>
   );
 }
 
@@ -114,4 +118,6 @@ const MenuStyled = styled.div`
   padding: 50px 50px 150px;
   justify-items: center;
   overflow-y: scroll;
+
+  ${menuAnimation}
 `;
