@@ -1,8 +1,8 @@
 import PropType from "prop-types";
 import styled, { css } from "styled-components";
 import { MdDeleteForever } from "react-icons/md";
-import { formatPrice } from "../../../../utils/maths";
-import { theme } from "../../../../theme";
+import { formatPrice } from "../../../../../utils/maths";
+import { theme } from "../../../../../theme";
 
 BasketCard.propTypes = {
   title: PropType.string,
