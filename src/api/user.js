@@ -25,15 +25,14 @@ export const createUser = async (userId) => {
 
   //setDoc(CACHETTE, NOURRITURE)
   await setDoc(docRef, newUserToCreate);
-
   return newUserToCreate;
 };
 
 export const authenticateUser = async (userId) => {
-  const existingUser = await getUser(userId);
+  let user = await getUser(userId);
 
-  if (!existingUser) {
-    await createUser(userId);
+  if (!user) {
+    user = await createUser(userId);
   }
-  return existingUser;
+  return user;
 };
