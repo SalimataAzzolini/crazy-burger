@@ -40,7 +40,7 @@ const TextInputStyled = styled.div`
 
   border-radius: ${theme.borderRadius.round};
   padding: 18px 24px;
-  min-width: 350px;
+  /* min-width: 350px; */
 
   input {
     border: none;
