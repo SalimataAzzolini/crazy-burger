@@ -15,7 +15,7 @@ import { initialiseUserSession } from "./helpers/initialiseUserSession";
 
 export default function OrderPage() {
   //Déclaration des states du context OrderContext
-  const [isModeAdmin, setIsModeAdmin] = useState(false);
+  const [isModeAdmin, setIsModeAdmin] = useState(true);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isAddSelected, setIsAddSelected] = useState(true);
   const [isEditSelected, setIsEditSelected] = useState(false);
