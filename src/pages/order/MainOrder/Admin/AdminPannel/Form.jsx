@@ -4,6 +4,7 @@ import styled from "styled-components";
 import ImagePreview from "./ImagePreview";
 import TextInput from "../../../../../components/reusable-ui/TextInput";
 import { getInputTextsConfig } from "./InputTextConfig";
+import SelectInput from "../../../../../components/reusable-ui/SelectInput";
 
 const Form = React.forwardRef(function Form(
   { product, onSubmit, onChange, onFocus, onBlur, children },
@@ -38,20 +39,18 @@ const Form = React.forwardRef(function Form(
             ref={ref && input.name === "title" ? ref : null}
           />
         ))}
-        <select name="isAvailable" className="is-available" id="3">
-          {isAvalaibleOptions.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-        <select name="isPublicised" className="is-publicised" id="4">
-          {isPublicisedOptions.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
+        <SelectInput
+          options={isAvalaibleOptions}
+          className="is-available"
+          id="3"
+          name="isAvailable"
+        />
+        <SelectInput
+          options={isPublicisedOptions}
+          className="is-publicised"
+          id="4"
+          name="isPublicised"
+        />
       </div>
       <div className="form-footer">{children}</div>
     </FormStyled>
