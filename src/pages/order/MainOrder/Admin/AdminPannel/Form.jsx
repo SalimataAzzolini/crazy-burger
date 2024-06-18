@@ -12,6 +12,16 @@ const Form = React.forwardRef(function Form(
   //input texts config
   const inputTexts = getInputTextsConfig(product);
 
+  const isAvalaibleOptions = [
+    { value: "true", label: "En stock" },
+    { value: "false", label: "En rupture" },
+  ];
+
+  const isPublicisedOptions = [
+    { value: "true", label: "Sans pub" },
+    { value: "false", label: "Avec pub" },
+  ];
+
   // affichage
   return (
     <FormStyled onSubmit={onSubmit}>
@@ -29,12 +39,18 @@ const Form = React.forwardRef(function Form(
           />
         ))}
         <select name="isAvailable" className="is-available" id="3">
-          <option value="true">En stock</option>
-          <option value="false">En rupture</option>
+          {isAvalaibleOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
         </select>
         <select name="isPublicised" className="is-publicised" id="4">
-          <option value="true">Sans pub</option>
-          <option value="false">Avec pub</option>
+          {isPublicisedOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
         </select>
       </div>
       <div className="form-footer">{children}</div>
