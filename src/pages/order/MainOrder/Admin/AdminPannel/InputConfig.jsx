@@ -48,7 +48,7 @@ export const getSelectInputConfig = (newProduct) => [
     name: "isAvailable",
     value: newProduct.isAvailable,
     options: isAvailableOptions,
-    Icon: <FiPackage />,
+    // Icon: <FiPackage />,
     className: "is-available",
   },
   {
@@ -56,7 +56,7 @@ export const getSelectInputConfig = (newProduct) => [
     name: "isPublicised",
     value: newProduct.isPublicised,
     options: isPublicisedOptions,
-    Icon: <GoMegaphone />,
+    // Icon: <GoMegaphone />,
     className: "is-publicised",
   },
 ];

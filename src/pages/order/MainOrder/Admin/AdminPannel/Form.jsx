@@ -14,6 +14,16 @@ const Form = React.forwardRef(function Form(
   const inputTexts = getInputTextsConfig(product);
   const inputSelects = getSelectInputConfig(product);
 
+  const isAvalaibleOptions = [
+    { value: "true", label: "En stock" },
+    { value: "false", label: "En rupture" },
+  ];
+
+  const isPublicisedOptions = [
+    { value: "true", label: "Sans pub" },
+    { value: "false", label: "Avec pub" },
+  ];
+
   // affichage
   return (
     <FormStyled onSubmit={onSubmit}>
@@ -30,9 +40,21 @@ const Form = React.forwardRef(function Form(
             ref={ref && input.name === "title" ? ref : null}
           />
         ))}
-        {inputSelects.map((inputSelect) => (
+        {/* {inputSelects.map((inputSelect) => (
           <SelectInput {...inputSelect} key={inputSelect.id} />
-        ))}
+        ))} */}
+        <SelectInput
+          options={isAvalaibleOptions}
+          className="is-available"
+          id="3"
+          name="isAvailable"
+        />
+        <SelectInput
+          options={isPublicisedOptions}
+          className="is-publicised"
+          id="4"
+          name="isPublicised"
+        />
       </div>
       <div className="form-footer">{children}</div>
     </FormStyled>
@@ -45,9 +67,9 @@ Form.propTypes = {
   product: PropTypes.object.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired,
-  onFocus: PropTypes.func.isRequired,
-  onBlur: PropTypes.func.isRequired,
+  children: PropTypes.node,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
 };
 
 const FormStyled = styled.form`

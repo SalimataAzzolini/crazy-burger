@@ -37,8 +37,8 @@ const MEDIUM = [
     title: "Vegan Burger",
     price: 5.4985,
     quantity: 0,
-    isAvailable: true,
-    isPublicised: false,
+    isAvailable: false,
+    isPublicised: true,
   },
   {
     id: "3",
